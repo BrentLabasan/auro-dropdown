@@ -113,7 +113,7 @@ class AuroDropdown extends LitElement {
           <slot name="trigger"></slot>
         </div>
         <div class="${classMap(optionsListClassMap)}">
-          <slot></slot>
+          <slot name="options"></slot>
         </div>
         b
         <br /><br />
