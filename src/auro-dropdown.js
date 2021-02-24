@@ -35,6 +35,7 @@ class AuroDropdown extends LitElement {
 
     this.open = false;
     this.disabled = false;
+    this.active = false;
 
     this.errorMessage = null;
   }
@@ -51,6 +52,7 @@ class AuroDropdown extends LitElement {
 
       open: { type: Boolean },
       disabled: { type: Boolean },
+      active: { type: Boolean },
 
       errorMessage: { type: String },
     };
@@ -71,11 +73,14 @@ class AuroDropdown extends LitElement {
   }
 
   // When using auroElement, use the following attribute and function when hiding content from screen readers.
-  // aria-hidden="${this.hideAudible(this.hiddenAudible)}"
+  // aria-hidden="${this.hilintdeAudible(this.hiddenAudible)}"
 
   // function that renders the HTML and CSS into  the scope of the component
   render() {
-    const dropdownClassMap = {
+    const triggerClassMap = {
+      'trigger': true,
+      'trigger--isActive': this.active
+    }, optionsListClassMap = {
       'optionsList': true,
       'optionsList--isOpen': this.open
     }
@@ -83,10 +88,10 @@ class AuroDropdown extends LitElement {
     return html`
       <div id="container-dropdown">
         a
-        <div @click="${this.handleTriggerClick}">
+        <div @click="${this.handleTriggerClick}" class="${classMap(triggerClassMap)}">
           <slot name="trigger"></slot>
         </div>
-        <div class="${classMap(dropdownClassMap)}">
+        <div class="${classMap(optionsListClassMap)}">
           <slot></slot>
         </div>
         b
