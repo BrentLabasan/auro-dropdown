@@ -37,6 +37,11 @@ class AuroDropdown extends LitElement {
     this.disabled = false;
     this.active = false;
 
+
+    this.dropdownHasFocus = false;
+    this.triggerHasFocus = false;
+    this.optionsListHasFocus = false;
+
     this.errorMessage = null;
   }
 
@@ -54,6 +59,10 @@ class AuroDropdown extends LitElement {
       disabled: { type: Boolean },
       active: { type: Boolean },
 
+      dropdownHasFocus: { type: Boolean },
+      triggerHasFocus: { type: Boolean },
+      optionsListHasFocus: { type: Boolean },
+
       errorMessage: { type: String },
     };
   }
@@ -62,6 +71,18 @@ class AuroDropdown extends LitElement {
     return css`
       ${styleCss}
     `;
+  }
+
+  doesDropdownHaveFocus() {
+    return this.triggerHasFocus || this.optionsListHasFocus;
+  }
+
+  doesTriggerHaveFocus(bool) {
+    return bool;
+  }
+
+  doesOptionsListHaveFocus(bool) {
+    return bool;
   }
 
   generateListOfOptions(list) {
