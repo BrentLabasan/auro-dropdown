@@ -32,7 +32,7 @@ class AuroDropdown extends LitElement {
   static get properties() {
     return {
       // ...super.properties,
-      cssClass:   { type: String }
+      cssClass: { type: String }
     };
   }
 
@@ -49,7 +49,10 @@ class AuroDropdown extends LitElement {
   render() {
     return html`
       <div class=${this.cssClass}>
+        a
+        <slot name="trigger"></slot>
         <slot></slot>
+        b
       </div>
     `;
   }

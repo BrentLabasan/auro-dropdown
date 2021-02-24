@@ -20,7 +20,12 @@ The `auro-dropdown` element should be used in situations where users may:
 |||√|√|
 
 <div class="exampleWrapper">
-  <auro-dropdown cssClass="testClass">Hello World!</auro-dropdown>
+  <auro-dropdown cssClass="testClass">
+    <span slot="trigger">trigger element</span>
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+  </auro-dropdown>
 </div>
 
 <auro-accordion lowProfile justifyRight>
