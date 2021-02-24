@@ -24,7 +24,7 @@ import styleCss from "./style-css.js";
  * @attr {String} cssClass - Applies designated CSS class to DOM element.
  */
 
-// build the component class
+
 class AuroDropdown extends LitElement {
   constructor() {
     super();
@@ -73,6 +73,26 @@ class AuroDropdown extends LitElement {
     `;
   }
 
+  firstUpdated() {
+    const nodeListP = this.shadowRoot.querySelectorAll('slot')[1].assignedNodes()[0].querySelectorAll('a');
+
+    nodeListP.forEach((node, idx) => {
+      node.addEventListener('focus', () => {
+        console.log("focus", idx)
+        this.indexSelectedOption = idx;
+      })
+
+      node.addEventListener('blur', function() {
+        console.log("blur")
+      })
+      node.addEventListener('click', function() {
+        console.log("click")
+      })
+    })
+  
+    // debugger;
+  }
+
   doesDropdownHaveFocus() {
     return this.triggerHasFocus || this.optionsListHasFocus;
   }
@@ -96,8 +116,25 @@ class AuroDropdown extends LitElement {
   // When using auroElement, use the following attribute and function when hiding content from screen readers.
   // aria-hidden="${this.hilintdeAudible(this.hiddenAudible)}"
 
+  generateOptionsList() {
+    // get children
+    const allOptions = this.shadowRoot.querySelector('slot');
+    console.log('%c allOptions ' + allOptions, 'background-color: black; color: white;');
+    const childrenNodes = allOptions.assignedNodes({ flatten: true });
+    console.log('%c childrenNodes ' + childrenNodes, 'background-color: blue; color: yellow;');
+    const arrOptionNodes = Array.prototype.filter.call(childrenNodes, (node) => node.nodeType == Node.ELEMENT_NODE);
+    console.log('%c arrOptionNodes ' + arrOptionNodes, 'background-color: #D92387; color: #77C3F2;');
+
+    return arrOptionNodes.forEach((optionNode) => {
+      optionNode.addEventListener("click", alert());
+      return html`<p>option</p>`;
+    });
+
+  }
+
   // function that renders the HTML and CSS into  the scope of the component
   render() {
+
     const triggerClassMap = {
       'trigger': true,
       'trigger--isActive': this.active
@@ -106,19 +143,27 @@ class AuroDropdown extends LitElement {
       'optionsList--isOpen': this.open
     }
 
+    // const optionsList = this.generateOptionsList();
+
     return html`
       <div id="container-dropdown">
-        a
-        <div @click="${this.handleTriggerClick}" class="${classMap(triggerClassMap)}">
+        <p>-- BEGIN CONTAINER --</p>
+        <div href="#" tabindex="1" aria-haspopup="options" @click="${this.handleTriggerClick}" class="${classMap(triggerClassMap)}">
           <slot name="trigger"></slot>
         </div>
         <div class="${classMap(optionsListClassMap)}">
-          <slot name="options"></slot>
+          <slot name="options">
+            
+          </slot>
         </div>
-        b
-        <br /><br />
+        <p>-- END CONTAINER --</p>
+        <div>
+        </div>
+        -- PROPERTIES --
+        <br />
         open ${this.open}
         disabled ${this.disabled}
+        indexSelectedOption ${this.indexSelectedOption}
       </div>
     `;
   }

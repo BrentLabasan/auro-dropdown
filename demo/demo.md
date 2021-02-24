@@ -18,12 +18,12 @@ The `auro-dropdown` element should be used in situations where users may:
   <auro-dropdown cssClass="testClass">
     <span slot="trigger">click trigger to open options list</span>
     <span slot="options">
-      <p>Stops</p>  
-      <p>Price</p>  
-      <p>Duration</p>  
-      <p>Dearture</p>  
-      <p>Arrival</p>  
-      <p>Prefer Alaska</p>  
+      <a href="#">Stops</a>  
+      <a href="#">Price</a>  
+      <a href="#">Duration</a>  
+      <a href="#">Dearture</a>  
+      <a href="#">Arrival</a>  
+      <a href="#">Prefer Alaska</a>  
     </span>
 
   </auro-dropdown>
