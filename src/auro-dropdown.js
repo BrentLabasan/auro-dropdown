@@ -29,6 +29,9 @@ class AuroDropdown extends LitElement {
   constructor() {
     super();
 
+    // this.currentValue = this.currentValue ? this.currentValue : "select an option" ;
+
+    this.currentValue = "you should specify a value";
     this.options = [];
     this.indexDefaultOption = 0;
     this.indexSelectedOption = null;
@@ -50,6 +53,8 @@ class AuroDropdown extends LitElement {
     return {
       // ...super.properties,
       cssClass: { type: String },
+
+      currentValue: { type: String },
 
       options: { type: Array },
       indexDefaultOption: { type: Number },
@@ -74,6 +79,7 @@ class AuroDropdown extends LitElement {
   }
 
   firstUpdated() {
+
     const nodeListP = this.shadowRoot.querySelectorAll('slot')[1].assignedNodes()[0].querySelectorAll('a');
 
     nodeListP.forEach((node, idx) => {
@@ -82,14 +88,15 @@ class AuroDropdown extends LitElement {
         this.indexSelectedOption = idx;
       })
 
-      node.addEventListener('blur', function() {
+      node.addEventListener('blur', () => {
         console.log("blur")
       })
-      node.addEventListener('click', function() {
+      node.addEventListener('click', () => {
         console.log("click")
+        this.currentValue = idx;
       })
     })
-  
+
     // debugger;
   }
 
@@ -132,28 +139,39 @@ class AuroDropdown extends LitElement {
 
   }
 
+  handleButtonFocus() {
+    this.triggerHasFocus = true;
+  }
+  handleTriggerBlur() {
+    this.triggerHasFocus = false;
+  }
+
   // function that renders the HTML and CSS into  the scope of the component
   render() {
 
     const triggerClassMap = {
       'trigger': true,
-      'trigger--isActive': this.active
+      'trigger--isFocused': this.triggerHasFocus
     }, optionsListClassMap = {
       'optionsList': true,
       'optionsList--isOpen': this.open
-    }
+    }     
 
     // const optionsList = this.generateOptionsList();
 
     return html`
       <div id="container-dropdown">
         <p>-- BEGIN CONTAINER --</p>
-        <div href="#" tabindex="1" aria-haspopup="options" @click="${this.handleTriggerClick}" class="${classMap(triggerClassMap)}">
-          <slot name="trigger"></slot>
-        </div>
+        <button @focus="${this.handleButtonFocus}" @blur="${this.handleTriggerBlur}" tabindex="0" role="button"
+          @click="${this.handleTriggerClick}" class="${classMap(triggerClassMap)}">
+      
+          ${this.currentValue}
+      
+        </button>
+        <slot name="trigger"></slot>
         <div class="${classMap(optionsListClassMap)}">
           <slot name="options">
-            
+      
           </slot>
         </div>
         <p>-- END CONTAINER --</p>
