@@ -33,3 +33,32 @@
   display: inline-block;
   padding: var(--auro-text-body-size-default);
 }
+
+#container-dropdown {
+  .optionsList {
+    // border-left: 2px solid var(--auro-color-brand-breeze-100);
+    // border-bottom: 1px solid var(--auro-color-border-primary-on-light);
+    // overflow: hidden;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    // transition: all 0.5s ease-in-out;
+    // transition-property: opacity, height, visibility;
+  
+    // &-slot {
+    //   padding: var(--auro-size-xl);
+    // }
+  }
+
+  .optionsList--isOpen {
+    opacity: 1;
+    height: auto;
+    visibility: visible;
+  }
+
+
+  #optionListContainer {
+    border: 2px dotted blue;
+  }
+}
+

@@ -5,6 +5,8 @@
 
 // If use litElement base class
 import { LitElement, html, css } from "lit-element";
+import { classMap } from "lit-html/directives/class-map";
+// import { ifDefined } from "lit-html/directives/if-defined";
 
 // If using auroElement base class
 // See instructions for importing auroElement base class https://git.io/JULq4
@@ -24,15 +26,33 @@ import styleCss from "./style-css.js";
 
 // build the component class
 class AuroDropdown extends LitElement {
-  // constructor() {
-  //   super();
-  // }
+  constructor() {
+    super();
+
+    this.options = [];
+    this.indexDefaultOption = 0;
+    this.indexSelectedOption = null;
+
+    this.open = false;
+    this.disabled = false;
+
+    this.errorMessage = null;
+  }
 
   // function to define props used within the scope of this component
   static get properties() {
     return {
       // ...super.properties,
-      cssClass: { type: String }
+      cssClass: { type: String },
+
+      options: { type: Array },
+      indexDefaultOption: { type: Number },
+      indexSelectedOption: { type: Number },
+
+      open: { type: Boolean },
+      disabled: { type: Boolean },
+
+      errorMessage: { type: String },
     };
   }
 
@@ -42,17 +62,37 @@ class AuroDropdown extends LitElement {
     `;
   }
 
+  generateListOfOptions(list) {
+    list.forEach((option, idx) => html`<div>option #${idx}</div>`);
+  }
+
+  handleTriggerClick() {
+    this.open = !this.open;
+  }
+
   // When using auroElement, use the following attribute and function when hiding content from screen readers.
   // aria-hidden="${this.hideAudible(this.hiddenAudible)}"
 
   // function that renders the HTML and CSS into  the scope of the component
   render() {
+    const dropdownClassMap = {
+      'optionsList': true,
+      'optionsList--isOpen': this.open
+    }
+
     return html`
-      <div class=${this.cssClass}>
+      <div id="container-dropdown">
         a
-        <slot name="trigger"></slot>
-        <slot></slot>
+        <div @click="${this.handleTriggerClick}">
+          <slot name="trigger"></slot>
+        </div>
+        <div class="${classMap(dropdownClassMap)}">
+          <slot></slot>
+        </div>
         b
+        <br /><br />
+        open ${this.open}
+        disabled ${this.disabled}
       </div>
     `;
   }

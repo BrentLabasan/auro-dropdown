@@ -1,6 +1,6 @@
 # auro-dropdown
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis in tellus nec pellentesque. Integer bibendum ligula sit amet vehicula gravida. Maecenas accumsan, ligula vitae molestie iaculis, tellus mi laoreet ex [install instructions](https://auro.alaskaair.com/components/auro/button/install), ac malesuada velit dolor vel mi. Cras et rutrum urna. Sed mattis mi eu tortor ullamcorper, egestas bibendum mauris cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra eros eget neque commodo vulputate. In tempus eu velit at dictum.
+Lorem ipsum dolor sit amet
 
 Nulla at augue facilisis `odio lobortis` molestie vitae a nulla.
 
@@ -12,19 +12,14 @@ The `auro-dropdown` element should be used in situations where users may:
 * quis euismod felis mollis
 * consectetur ipsum risus sed tortor
 
-> Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam fermentum libero ipsum, ac tempor sapien blandit in. Nam tincidunt non felis molestie varius.
 
-|convallis|tristique|nisl dignissim|eleifend|
-|---|---|---|---|
-|√|√|||
-|||√|√|
 
 <div class="exampleWrapper">
   <auro-dropdown cssClass="testClass">
-    <span slot="trigger">trigger element</span>
-    <span>1</span>
-    <span>2</span>
-    <span>3</span>
+    <span slot="trigger">click trigger to open option slist</span>
+    <span>option 1</span>
+    <span>option 2</span>
+    <span>option 3</span>
   </auro-dropdown>
 </div>
 
