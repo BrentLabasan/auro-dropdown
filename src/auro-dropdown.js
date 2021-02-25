@@ -83,9 +83,10 @@ class AuroDropdown extends LitElement {
     const nodeListP = this.shadowRoot.querySelectorAll('slot')[1].assignedNodes()[0].querySelectorAll('a');
 
     nodeListP.forEach((node, idx) => {
+      this.options.push(node.textContent);
+
       node.addEventListener('focus', () => {
         console.log("focus", idx)
-        this.indexSelectedOption = idx;
       })
 
       node.addEventListener('blur', () => {
@@ -94,6 +95,8 @@ class AuroDropdown extends LitElement {
       node.addEventListener('click', () => {
         console.log("click")
         this.currentValue = idx;
+        this.indexSelectedOption = idx;
+        this.open = false;
       })
     })
 
@@ -117,6 +120,7 @@ class AuroDropdown extends LitElement {
   }
 
   handleTriggerClick() {
+    console.log("&&& button was clicked");
     this.open = !this.open;
   }
 
@@ -155,7 +159,7 @@ class AuroDropdown extends LitElement {
     }, optionsListClassMap = {
       'optionsList': true,
       'optionsList--isOpen': this.open
-    }     
+    }
 
     // const optionsList = this.generateOptionsList();
 
@@ -165,7 +169,7 @@ class AuroDropdown extends LitElement {
         <button @focus="${this.handleButtonFocus}" @blur="${this.handleTriggerBlur}" tabindex="0" role="button"
           @click="${this.handleTriggerClick}" class="${classMap(triggerClassMap)}">
       
-          ${this.currentValue}
+          ${this.options[this.indexSelectedOption]}
       
         </button>
         <slot name="trigger"></slot>
