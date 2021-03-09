@@ -28,9 +28,12 @@ The `auro-dropdown` element should be used in situations where users may:
   </auro-dropdown> -->
   <auro-dropdown for="button1" sticky>
   <ul>
-  <li>1</li>
-  <li>2</li>
-  <li>3</li>
+  <li>Stops</li>
+  <li>Price</li>
+  <li>Duration</li>
+  <li>Departure</li>
+  <li>Arrival</li>
+  <li>Prefer Alaska</li>
   </ul>
   <input type="text" id="button1" slot="trigger"/>
   </auro-dropdown>
