@@ -32,7 +32,7 @@ The `auro-dropdown` element should be used in situations where users may:
   <li>2</li>
   <li>3</li>
   </ul>
-  <button id="button1" slot="trigger">Popover Test</button>
+  <input type="text" id="button1" slot="trigger"/>
   </auro-dropdown>
 </div>
 

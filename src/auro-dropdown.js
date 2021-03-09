@@ -156,7 +156,6 @@ class AuroDropdown extends LitElement {
 
       <slot name="trigger"></slot>
 
-      <div>RENDERING</div>
     `;
   }
 }
