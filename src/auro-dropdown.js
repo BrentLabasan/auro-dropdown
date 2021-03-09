@@ -93,6 +93,11 @@ class AuroDropdown extends LitElement {
       if (event.key.toLowerCase() === 'tab') {
         this.toggleHide();
       }
+    },
+    handleTabFocusesOnTrigger = (event) => {
+      if (event.key.toLowerCase() === 'tab') {
+        this.toggleShow();
+      }
     };
 
     if (!this.sticky) {
@@ -108,6 +113,8 @@ class AuroDropdown extends LitElement {
 
     // if user tabs off of trigger, then hide the popover.
     this.trigger.addEventListener('keydown', handleTabWhenFocusOnTrigger);
+    this.trigger.addEventListener('keyup', handleTabFocusesOnTrigger)
+
 
     // e.g. for a closePopover button in the popover
     this.addEventListener('hidePopover', handleHide);
