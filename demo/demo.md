@@ -21,9 +21,9 @@ The `auro-dropdown` element should be used in situations where users may:
       <a href="#">Stops</a>  
       <a href="#">Price</a>  
       <a href="#">Duration</a>  
-      <a href="#">Dearture</a>  
+      <a href="#">Departure</a>  
       <a href="#">Arrival</a>  
-      <a href="#">Prefer Alaska</a>  
+      <a href="#">Prefer Alaska</a>
     </span>
   </auro-dropdown>
 </div>

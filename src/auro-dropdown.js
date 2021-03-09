@@ -34,7 +34,7 @@ class AuroDropdown extends LitElement {
     this.currentValue = "you should specify a value";
     this.options = [];
     this.indexDefaultOption = 0;
-    this.indexSelectedOption = null;
+    this.indexSelectedOption = 0;
 
     this.open = false;
     this.disabled = false;
@@ -178,7 +178,7 @@ class AuroDropdown extends LitElement {
       
           </slot>
         </div>
-        <p>-- END CONTAINER --</p>
+        <p>-- END CONTAINER (❗ you want the optionsList to appear above this element ❗) --</p>
         <div>
         </div>
         -- PROPERTIES --

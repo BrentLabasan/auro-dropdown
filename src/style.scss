@@ -69,6 +69,9 @@
     // &-slot {
     //   padding: var(--auro-size-xl);
     // }
+
+    position: absolute;
+    z-index: 999;
   }
 
   .optionsList--isOpen {

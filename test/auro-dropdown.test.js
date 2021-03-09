@@ -101,12 +101,12 @@ describe('auro-dropdown', () => {
         <auro-dropdown cssClass="testClass">
           <span slot="trigger">click trigger to open options list</span>
           <span slot="options">
-            <a href="#">Stops</a>
-            <a href="#">Price</a>
-            <a href="#">Duration</a>
-            <a href="#">Dearture</a>
-            <a href="#">Arrival</a>
-            <a href="#">Prefer Alaska</a>
+            <p href="#">Stops</p>
+            <p href="#">Price</p>
+            <p href="#">Duration</p>
+            <p href="#">Departure</p>
+            <p href="#">Arrival</p>
+            <p href="#">Prefer Alaska</p>
           </span>
         </auro-dropdown>
     `);
@@ -137,6 +137,11 @@ describe('auro-dropdown', () => {
     expect(optionsList.classList[1]).to.equal(undefined)
 
   });
+
+  it('mimicing tabbing', async () => {
+
+  });
+
 
 
 });
