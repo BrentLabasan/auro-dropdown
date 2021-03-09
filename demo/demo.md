@@ -26,8 +26,12 @@ The `auro-dropdown` element should be used in situations where users may:
       <a href="#">Prefer Alaska</a>
     </span>
   </auro-dropdown> -->
-  <auro-dropdown for="button1">
-  Top popover content!
+  <auro-dropdown for="button1" sticky>
+  <ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  </ul>
   <button id="button1" slot="trigger">Popover Test</button>
   </auro-dropdown>
 </div>
