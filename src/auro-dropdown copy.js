@@ -53,7 +53,7 @@ class AuroDropdown extends LitElement {
   handleKeyPress(evt) {
     // alert(evt.keyCode);
     if (evt.keyCode === 9) {
-
+      return true;
     }
   }
 

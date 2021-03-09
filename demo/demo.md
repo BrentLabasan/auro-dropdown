@@ -15,7 +15,7 @@ The `auro-dropdown` element should be used in situations where users may:
 
 
 <div class="exampleWrapper">
-  <auro-dropdown cssClass="testClass">
+  <!-- <auro-dropdown cssClass="testClass">
     <span slot="trigger">click trigger to open options list</span>
     <span slot="options">
       <a href="#">Stops</a>  
@@ -25,6 +25,10 @@ The `auro-dropdown` element should be used in situations where users may:
       <a href="#">Arrival</a>  
       <a href="#">Prefer Alaska</a>
     </span>
+  </auro-dropdown> -->
+  <auro-dropdown for="button1">
+  Top popover content!
+  <button id="button1" slot="trigger">Popover Test</button>
   </auro-dropdown>
 </div>
 
