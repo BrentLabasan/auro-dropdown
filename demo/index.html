@@ -1,31 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Auro Web Component Generator | auro-dropdown custom element</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://unpkg.com/prismjs@latest/themes/prism.css"
-    />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-  </head>
-  <body>
-    <main></main>
 
-    <script type="module">
-      import 'https://unpkg.com/marked@latest/marked.min.js';
-      import 'https://unpkg.com/prismjs@latest/prism.js';
-      fetch('/demo/demo.md')
-        .then((response) => response.text())
-        .then((text) => {
-          const rawHtml = marked(text);
-          document.querySelector('main').innerHTML = rawHtml;
-          Prism.highlightAll();
-        });
-    </script>
-    <script type="module" src="../src/auro-dropdown.js"></script>
-    <script src="https://unpkg.com/@alaskaairux/auro-accordion@latest/dist/auro-accordion__bundled.js" type="module"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auro Web Component Generator | auro-dropdown custom element</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@latest/themes/prism.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+</head>
+
+<style type="text/css">
+.otherTabbableElements {
+  padding: 10px;
+  border-radius: 20px;
+}
+  #aboveElements {
+    background-color: #37afff;
+  }
+
+  #belowElements {
+    background-color: #888630;
+  }
+
+  #debugContainer {
+    display: inline-block;
+    width: 250px;
+    background-color: rgb(235, 233, 233);
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    /* right: 20; */
+    filter: drop-shadow(5px 5px 4px #666666);
+  }
+</style>
+
+<body>
+  <main></main>
+
+  <div id="debugContainer">
+    <h1>DEBUG VALUES</h1>
+    <!-- <h2>This area below will show which element currently has focus.</h2> -->
+
+    <div id="debug">
+      Waiting for interactions with the page...
+    </div>
+  </div>
+
+
+  <script type="module">
+    import 'https://unpkg.com/marked@latest/marked.min.js';
+    import 'https://unpkg.com/prismjs@latest/prism.js';
+    fetch('/demo/demo.md')
+      .then((response) => response.text())
+      .then((text) => {
+        const rawHtml = marked(text);
+        document.querySelector('main').innerHTML = rawHtml;
+        Prism.highlightAll();
+      });
+
+      function change() {
+        document.getElementById('debug').innerHTML = `id: ${document.activeElement.id} tabindex: ${document.activeElement.getAttribute('tabindex')}`;
+      }
+
+    function handleClickOnDocument() {
+      console.log("document.activeElement", document.activeElement);
+      // document.getElementById('debug').innerHTML = `id: ${document.activeElement.id} <br/><br/> innerHTML: ${document.activeElement.innerHTML}`;
+      change();
+    }
+
+    function handleKeypressOnDocument(evt) {
+      if (event.key.toLowerCase() === 'tab') {
+        console.log("path B")
+        this.toggleShow();
+      }
+
+      console.log("A keypress was detected.");
+      console.log("document.activeElement", document.activeElement);
+      // document.getElementById('debug').innerHTML = `id: ${document.activeElement.id} <br/><br/> innerHTML: ${document.activeElement.innerHTML}`;
+      // document.getElementById('debug').innerHTML = `id: ${document.activeElement.id}`;
+      change();
+    }
+
+    console.log("inline");
+    document.addEventListener('click', handleClickOnDocument);
+    document.addEventListener('keypress', handleKeypressOnDocument);
+
+  </script>
+  <script type="module" src="../src/auro-dropdown.js"></script>
+  <script src="https://unpkg.com/@alaskaairux/auro-accordion@latest/dist/auro-accordion__bundled.js"
+    type="module"></script>
+</body>
+
 </html>

@@ -30,7 +30,7 @@ class AuroDropdown extends LitElement {
     this.placement = 'top';
 
     // adds toggle function to root element based on touch
-    this.addEventListener('touchstart', function() {
+    this.addEventListener('touchstart', function () {
       this.toggleShow();
       this.setAttribute("isTouch", "true");
     });
@@ -47,9 +47,9 @@ class AuroDropdown extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      placement:  { type: String },
-      for:        { type: String },
-      sticky:     { type: Boolean }
+      placement: { type: String },
+      for: { type: String },
+      sticky: { type: Boolean }
     };
   }
 
@@ -86,19 +86,29 @@ class AuroDropdown extends LitElement {
     const handleShow = () => {
       this.toggleShow();
     },
-    handleHide = () => {
-      this.toggleHide();
-    },
-    handleTabWhenFocusOnTrigger = (event) => {
-      if (event.key.toLowerCase() === 'tab') {
+      handleHide = () => {
         this.toggleHide();
-      }
-    },
-    handleTabFocusesOnTrigger = (event) => {
-      if (event.key.toLowerCase() === 'tab') {
-        this.toggleShow();
-      }
-    };
+      },
+      handleTabWhenFocusOnTrigger = (event) => {
+        console.log("path C");
+        if (event.key.toLowerCase() === 'tab') {
+          console.log("path D");
+          // this.toggleHide();
+          // instead of hiding the options list, put focus on first element
+          // debugger;
+          // for some reason the first <li> does not get focused on
+          // I don't know why right now, even when I did the .focus() myself
+          // I'm going to try see if I can get the tab to focus on anything else in popover
+          // this.popover.querySelector('slot').assignedNodes()[1].querySelectorAll('li')[0].focus();
+        }
+      },
+      handleTabFocusesOnTrigger = (event) => {
+        console.log("path A");
+        if (event.key.toLowerCase() === 'tab') {
+          console.log("path B")
+          this.toggleShow();
+        }
+      };
 
     if (!this.sticky) {
       this.trigger.addEventListener('touchstart', handleShow);
@@ -118,6 +128,20 @@ class AuroDropdown extends LitElement {
 
     // e.g. for a closePopover button in the popover
     this.addEventListener('hidePopover', handleHide);
+
+
+
+    // const debug = document.getElementById('#debug');
+    // const debug = document.querySelector('#debug');
+    const debug = this.shadowRoot.querySelector(`#debug`);
+    console.log("debug", debug);
+    debug.addEventListener('click', () => { alert() } );
+
+  }
+
+  test() {
+    console.log("a");
+    this.shadowRoot.getElementById('#debug').innerText = document.activeElement;
   }
 
   /**
@@ -160,9 +184,12 @@ class AuroDropdown extends LitElement {
         <div id="arrow" class="arrow" data-popper-arrow></div>
         <slot role="tooltip"></slot>
       </div>
-
+      
       <slot name="trigger"></slot>
-
+      
+      <div id="debug">
+        N/A
+      </div>
     `;
   }
 }

@@ -1,4 +1,4 @@
-# auro-popover
+# auro-dropdown
 
 Popover attaches to an element and displays on hover/blur.
 

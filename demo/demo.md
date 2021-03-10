@@ -1,6 +1,6 @@
 # auro-dropdown
 
-Lorem ipsum dolor sit amet
+<!-- Lorem ipsum dolor sit amet
 
 Nulla at augue facilisis `odio lobortis` molestie vitae a nulla.
 
@@ -10,9 +10,50 @@ The `auro-dropdown` element should be used in situations where users may:
 
 * egestas bibendum mauris cursus
 * quis euismod felis mollis
-* consectetur ipsum risus sed tortor
+* consectetur ipsum risus sed tortor -->
+
+<!-- <button>button 1</button>
+<button>button 2</button> -->
+
+<div id="aboveElements" class="otherTabbableElements">
+<h3>tabbable elements above auro-dropdown</h3>
+
+<p>All of the items below are tabbable. The text area and button are tabbable by default, and the divs use two different methods.</p>
+
+<textarea tabindex="1" id="elDummy1">A textarea. Focus states work by default.</textarea>
+<button tabindex="2" id="elDummy2">And I'm a button. Again, works by default.</button>
+<div tabindex="3" contenteditable id="elDummy3">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
+<div tabindex="4" id="elDummy4">I'm another div, and I have a <code>tabindex</code>. You can't edit me like the div above, but you can tab to me.</div>
+<!-- <textarea tabindex="-1">I can't be tabbed to. This is a terrible idea, generally, but it can be done using tabindex="-1". Notice that (if you click) I still have a focus state, even though you can't tab to me.</textarea> -->
+
+</div>
+
+  <auro-dropdown for="button1" sticky id="auro-dropdown">
+  <ul id="ul">
+  <li><a href="#" id="li-option1" tabindex="6">Option #1</a></li>
+  <li><a href="#" id="li-option2" tabindex="7">Option #2</a></li>
+  <li><a href="#" id="li-option3" tabindex="8">Option #3</a></li>
+  </ul>
+  <input type="text" id="button1" slot="trigger" tabindex="5"/>
+  </auro-dropdown>  
+
+<div id="belowElements" class="otherTabbableElements">
+<h3>tabbable elements below auro-dropdown</h3>
+<textarea tabindex="9" id="elDummy5">A textarea. Focus states work by default.</textarea>
+<button tabindex="10" id="elDummy6">And I'm a button. Again, works by default.</button>
+<div tabindex="11"contenteditable id="elDummy7">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
+<div tabindex="12" id="elDummy8 ">I'm another div, and I have a <code>tabindex</code>. You can't edit me like the div above, but you can tab to me.</div>
+<!-- <textarea tabindex="-1">I can't be tabbed to. This is a terrible idea, generally, but it can be done using tabindex="-1". Notice that (if you click) I still have a focus state, even though you can't tab to me.</textarea> -->
+</div>
 
 
+
+
+
+
+
+<!-- <a href="#" id="wtf">link 1</a>
+<a href="#">link 2</a> -->
 
 <div class="exampleWrapper">
   <!-- <auro-dropdown cssClass="testClass">
@@ -26,31 +67,37 @@ The `auro-dropdown` element should be used in situations where users may:
       <a href="#">Prefer Alaska</a>
     </span>
   </auro-dropdown> -->
-  <auro-dropdown for="button1" sticky>
+
+  <!-- <auro-dropdown for="button1" sticky tabindex="2">
   <ul>
-  <li>Stops</li>
-  <li>Price</li>
-  <li>Duration</li>
-  <li>Departure</li>
-  <li>Arrival</li>
-  <li>Prefer Alaska</li>
+  <li><a href="#">Stops</a></li>
+  <li><a href="#">Price</a></li>
+  <li><a href="#">Duration</a></li>
+  <li><a href="#">Departure</a></li>
+  <li><a href="#">Arrival</a></li>
+  <li><a href="#">Prefer Alaska</a></li>
   </ul>
   <input type="text" id="button1" slot="trigger"/>
-  </auro-dropdown>
+  </auro-dropdown> -->
+
 </div>
 
-<auro-accordion lowProfile justifyRight>
+<!-- <a href="#">link 3</a>
+<a href="#">link 4</a> -->
+
+<!-- <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
   ```html
   <auro-dropdown cssClass="testClass">Hello World!</auro-dropdown>
   ```
 
-</auro-accordion>
+</auro-accordion> -->
 
-## Then there is more
+<!-- ## Then there is more
 
 Aenean at blandit lorem. Fusce imperdiet mi nec gravida maximus. Quisque nisl libero, condimentum in nisi a, imperdiet lacinia arcu.
+
 
 ```javascript
 toggleDialog = (elName) => {
@@ -69,4 +116,4 @@ toggleDialogClose = (elName) => {
   html.style.overflow = '';
   dialog.removeAttribute("open");
 }
-```
+``` -->
