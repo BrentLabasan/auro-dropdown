@@ -20,29 +20,28 @@ The `auro-dropdown` element should be used in situations where users may:
 
 <p>All of the items below are tabbable. The text area and button are tabbable by default, and the divs use two different methods.</p>
 
-<textarea tabindex="1" id="elDummy1">A textarea. Focus states work by default.</textarea>
-<button tabindex="2" id="elDummy2">And I'm a button. Again, works by default.</button>
-<div tabindex="3" contenteditable id="elDummy3">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
-<div tabindex="4" id="elDummy4">I'm another div, and I have a <code>tabindex</code>. You can't edit me like the div above, but you can tab to me.</div>
+<textarea tabindex="0" id="elDummy1">A textarea. Focus states work by default.</textarea>
+<button tabindex="0" id="elDummy2">And I'm a button. Again, works by default.</button>
+<div tabindex="0" contenteditable id="elDummy3">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
+<div tabindex="0" id="elDummy4">I'm another div, and I have a <code>tabindex</code>. You can't edit me like the div above, but you can tab to me.</div>
 <!-- <textarea tabindex="-1">I can't be tabbed to. This is a terrible idea, generally, but it can be done using tabindex="-1". Notice that (if you click) I still have a focus state, even though you can't tab to me.</textarea> -->
 
 </div>
 
-  <auro-dropdown for="button1" sticky id="auro-dropdown">
+  <auro-dropdown tabindex="0" id="auro-dropdown" for="inputField" sticky>
+  <input tabindex="0" type="text" id="inputField" slot="trigger"/>
   <ul id="ul">
-  <li><a href="#" id="li-option1" tabindex="6">Option #1</a></li>
-  <li><a href="#" id="li-option2" tabindex="7">Option #2</a></li>
-  <li><a href="#" id="li-option3" tabindex="8">Option #3</a></li>
+  <li><a href="#" id="li-option1" tabindex="0">Option #1</a></li>
+  <li><a href="#" id="li-option2" tabindex="0">Option #2</a></li>
+  <li><a href="#" id="li-option3" tabindex="0">Option #3</a></li>
   </ul>
-  <input type="text" id="button1" slot="trigger" tabindex="5"/>
   </auro-dropdown>  
 
 <div id="belowElements" class="otherTabbableElements">
 <h3>tabbable elements below auro-dropdown</h3>
-<textarea tabindex="9" id="elDummy5">A textarea. Focus states work by default.</textarea>
-<button tabindex="10" id="elDummy6">And I'm a button. Again, works by default.</button>
-<div tabindex="11"contenteditable id="elDummy7">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
-<div tabindex="12" id="elDummy8 ">I'm another div, and I have a <code>tabindex</code>. You can't edit me like the div above, but you can tab to me.</div>
+<textarea tabindex="0" id="elDummy5">A textarea. Focus states work by default.</textarea>
+<button tabindex="0" id="elDummy6">And I'm a button. Again, works by default.</button>
+<div tabindex="0"contenteditable id="elDummy7">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
 <!-- <textarea tabindex="-1">I can't be tabbed to. This is a terrible idea, generally, but it can be done using tabindex="-1". Notice that (if you click) I still have a focus state, even though you can't tab to me.</textarea> -->
 </div>
 
