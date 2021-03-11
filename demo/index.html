@@ -39,11 +39,16 @@
   <main></main>
 
   <div id="debugContainer">
-    <h1>DEBUG VALUES</h1>
+    <h3>DEBUG VALUES</h3>
     <!-- <h2>This area below will show which element currently has focus.</h2> -->
 
     <div id="debug">
       Waiting for interactions with the page...
+    </div>
+
+    <div id="explanation">
+      <p><i>Whenever a click or keypress occurs on the page...</i></p>
+      <p><i>REMEMBER: Clicking an element will bring focus to an element, but if you are tabbing through the page, if you tab and "land" on an element, the element will not have focus until you press the ENTER button.</i></p>
     </div>
   </div>
 
@@ -59,24 +64,24 @@
         Prism.highlightAll();
       });
 
-      function change() {
-        document.getElementById('debug').innerHTML = `id: ${document.activeElement.id} tabindex: ${document.activeElement.getAttribute('tabindex')}`;
-      }
+    function change() {
+      document.getElementById('debug').innerHTML = `id: ${document.activeElement.id} <br/> tabindex: ${document.activeElement.getAttribute('tabindex')}`;
+    }
 
     function handleClickOnDocument() {
       console.log("document.activeElement", document.activeElement);
-      // document.getElementById('debug').innerHTML = `id: ${document.activeElement.id} <br/><br/> innerHTML: ${document.activeElement.innerHTML}`;
       change();
     }
 
     function handleKeypressOnDocument(evt) {
-      if (event.key.toLowerCase() === 'tab') {
-        console.log("path B")
-        this.toggleShow();
-      }
+      // console.log("document.activeElement", document.activeElement);
 
-      console.log("A keypress was detected.");
-      console.log("document.activeElement", document.activeElement);
+      // if (event.key.toLowerCase() === 'tab') {
+      //   console.log("path B")
+      //   this.toggleShow();
+      // }
+
+      // console.log("A keypress was detected.");
       // document.getElementById('debug').innerHTML = `id: ${document.activeElement.id} <br/><br/> innerHTML: ${document.activeElement.innerHTML}`;
       // document.getElementById('debug').innerHTML = `id: ${document.activeElement.id}`;
       change();
