@@ -28,8 +28,11 @@ The `auro-dropdown` element should be used in situations where users may:
 
 </div>
 
+<div class="sectionTitle">
+<h3>The &lt;auro-dropdown&gt; is the only thing in the orange container.</h3>
+</div>
 <div id="auroDropdownSection">
-  <h3>auro-dropdown</h3>
+  
   <auro-dropdown tabindex="0" id="auro-dropdown" for="inputField" sticky>
   <input tabindex="0" type="text" id="inputField" slot="trigger"/>
   <ul id="ul">

@@ -104,7 +104,7 @@ class AuroDropdown extends LitElement {
       },
       handleFocusWhenTabOntoAuroComponent = (event) => {
         // alert("handleFocusWhenTabOntoAuroComponent()");
-        if (event.key.toLowerCase() === 'tab') {
+        if (event.key.toLowerCase() === 'enter' || event.key.toLowerCase() === 'space ') {
           // console.log("path D");
           // this.toggleHide();
           // instead of hiding the options list, put focus on first element
