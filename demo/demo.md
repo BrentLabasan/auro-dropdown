@@ -20,10 +20,10 @@ The `auro-dropdown` element should be used in situations where users may:
 
 <p>All of the items below are tabbable. The text area and button are tabbable by default, and the divs use two different methods.</p>
 
-<textarea tabindex="0" id="elDummy1">A textarea. Focus states work by default.</textarea>
-<button tabindex="0" id="elDummy2">And I'm a button. Again, works by default.</button>
-<div tabindex="0" contenteditable id="elDummy3">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
-<div tabindex="0" id="elDummy4">I'm another div, and I have a <code>tabindex</code>. You can't edit me like the div above, but you can tab to me.</div>
+<textarea tabindex="0" id="elAbove1of4">A textarea. Focus states work by default.</textarea>
+<button tabindex="0" id="elAbove2of4">And I'm a button. Again, works by default.</button>
+<div tabindex="0" contenteditable id="elAbove3of4">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
+<div tabindex="0" id="elAbove4of4">I'm another div, and I have a <code>tabindex</code>. You can't edit me like the div above, but you can tab to me.</div>
 <!-- <textarea tabindex="-1">I can't be tabbed to. This is a terrible idea, generally, but it can be done using tabindex="-1". Notice that (if you click) I still have a focus state, even though you can't tab to me.</textarea> -->
 
 </div>
@@ -37,11 +37,11 @@ The `auro-dropdown` element should be used in situations where users may:
   </ul>
   </auro-dropdown>  
 
-<div id="belowElements" class="otherTabbableElements">
+<div id="elBelow1of4" class="otherTabbableElements">
 <h3>tabbable elements below auro-dropdown</h3>
-<textarea tabindex="0" id="elDummy5">A textarea. Focus states work by default.</textarea>
-<button tabindex="0" id="elDummy6">And I'm a button. Again, works by default.</button>
-<div tabindex="0"contenteditable id="elDummy7">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
+<textarea tabindex="0" id="elBelow2of4">A textarea. Focus states work by default.</textarea>
+<button tabindex="0" id="elBelow3of4">And I'm a button. Again, works by default.</button>
+<div tabindex="0"contenteditable id="elBelow4of4">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
 <!-- <textarea tabindex="-1">I can't be tabbed to. This is a terrible idea, generally, but it can be done using tabindex="-1". Notice that (if you click) I still have a focus state, even though you can't tab to me.</textarea> -->
 </div>
 
