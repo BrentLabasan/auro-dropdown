@@ -16,7 +16,7 @@ The `auro-dropdown` element should be used in situations where users may:
 <button>button 2</button> -->
 
 <div id="aboveElements" class="otherTabbableElements">
-<h3>tabbable elements above auro-dropdown</h3>
+<h3>3 tabbable elements, above auro-dropdown</h3>
 
 <!-- <p>All of the items below are tabbable. The text area and button are tabbable by default, and the divs use two different methods.</p> -->
 
@@ -28,6 +28,8 @@ The `auro-dropdown` element should be used in situations where users may:
 
 </div>
 
+<div id="auroDropdownSection">
+  <h3>auro-dropdown</h3>
   <auro-dropdown tabindex="0" id="auro-dropdown" for="inputField" sticky>
   <input tabindex="0" type="text" id="inputField" slot="trigger"/>
   <ul id="ul">
@@ -36,9 +38,10 @@ The `auro-dropdown` element should be used in situations where users may:
   <li><a href="#" id="li-option3" tabindex="0">Option #3</a></li>
   </ul>
   </auro-dropdown>  
+</div>
 
-<div id="elBelow1of4" class="otherTabbableElements">
-<h3>tabbable elements below auro-dropdown</h3>
+<div id="belowElements" class="otherTabbableElements">
+<h3>3 tabbable elements, below auro-dropdown</h3>
 <textarea tabindex="0" id="elBelow1of3">A textarea. Focus states work by default.</textarea>
 <button tabindex="0" id="elBelow2of3">And I'm a button. Again, works by default.</button>
 <div tabindex="0"contenteditable id="elBelow2of3">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
