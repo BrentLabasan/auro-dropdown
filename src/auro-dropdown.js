@@ -102,6 +102,20 @@ class AuroDropdown extends LitElement {
           // this.popover.querySelector('slot').assignedNodes()[1].querySelectorAll('li')[0].focus();
         }
       },
+      handleFocusWhenTabOntoAuroComponent = (event) => {
+        // alert("handleFocusWhenTabOntoAuroComponent()");
+        if (event.key.toLowerCase() === 'tab') {
+          // console.log("path D");
+          // this.toggleHide();
+          // instead of hiding the options list, put focus on first element
+          // debugger;
+          // for some reason the first <li> does not get focused on
+          // I don't know why right now, even when I did the .focus() myself
+          // I'm going to try see if I can get the tab to focus on anything else in popover
+          this.toggleShow();
+          this.popover.querySelector('slot').assignedNodes()[1].querySelectorAll('li')[0].focus();
+        }
+      },
       handleTabFocusesOnTrigger = (event) => {
         console.log("path A");
         if (event.key.toLowerCase() === 'tab') {
@@ -123,7 +137,9 @@ class AuroDropdown extends LitElement {
 
     // if user tabs off of trigger, then hide the popover.
     this.trigger.addEventListener('keydown', handleTabWhenFocusOnTrigger);
-    this.trigger.addEventListener('keyup', handleTabFocusesOnTrigger)
+    this.trigger.addEventListener('keyup', handleTabFocusesOnTrigger);
+
+    this.addEventListener('keyup', handleFocusWhenTabOntoAuroComponent);
 
 
     // e.g. for a closePopover button in the popover
