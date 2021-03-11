@@ -7,7 +7,7 @@
     "  3. Go to http://localhost:8000",
     "================================================================================"
   ],
-  "name": "@alaskaairux/auro-dropdown",
+  "name": "@aurolabs/auro-dropdown",
   "version": "0.0.0",
   "description": "Auro custom auro-dropdown element",
   "author": "Product design and research",
