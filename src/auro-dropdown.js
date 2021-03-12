@@ -50,7 +50,9 @@ class AuroDropdown extends LitElement {
     return {
       placement: { type: String },
       for: { type: String },
-      sticky: { type: Boolean }
+      sticky: { type: Boolean },
+      inputFieldText: { type: String},
+      inputFieldValue: { type: String}
     };
   }
 
@@ -136,6 +138,7 @@ class AuroDropdown extends LitElement {
                 if (evt.key.toLowerCase() === 'enter' || evt.key.toLowerCase() === 'space ') {
                   // debugger;
                   alert(theLis[i].getAttribute('value'));
+                  this.shadowRoot.querySelector('[name="trigger"]').assignedNodes()[0].querySelector('auro-input').setAttribute('value', theLis[i].getAttribute('value'))
                 }
               }
 
