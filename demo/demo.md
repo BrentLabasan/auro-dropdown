@@ -15,8 +15,11 @@ The `auro-dropdown` element should be used in situations where users may:
 <!-- <button>button 1</button>
 <button>button 2</button> -->
 
-<div id="aboveElements" class="otherTabbableElements">
+<div class="sectionTitle">
 <h3>3 tabbable elements, above auro-dropdown</h3>
+</div>
+<div id="aboveElements" class="otherTabbableElements">
+
 
 <!-- <p>All of the items below are tabbable. The text area and button are tabbable by default, and the divs use two different methods.</p> -->
 
@@ -27,6 +30,9 @@ The `auro-dropdown` element should be used in situations where users may:
 <!-- <textarea tabindex="-1">I can't be tabbed to. This is a terrible idea, generally, but it can be done using tabindex="-1". Notice that (if you click) I still have a focus state, even though you can't tab to me.</textarea> -->
 
 </div>
+
+<br/>
+<br/>
 
 <div class="sectionTitle">
 <h3>The &lt;auro-dropdown&gt; is the only thing in the orange container.</h3>
@@ -49,8 +55,13 @@ The `auro-dropdown` element should be used in situations where users may:
 
 </div>
 
-<div id="belowElements" class="otherTabbableElements">
+<br/>
+<br/>
+
+<div class="sectionTitle">
 <h3>3 tabbable elements, below auro-dropdown</h3>
+</div>
+<div id="belowElements" class="otherTabbableElements">
 <textarea tabindex="0" id="elBelow1of3">A textarea. Focus states work by default.</textarea>
 <button tabindex="0" id="elBelow2of3">And I'm a button. Again, works by default.</button>
 <div tabindex="0"contenteditable id="elBelow3of3">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
