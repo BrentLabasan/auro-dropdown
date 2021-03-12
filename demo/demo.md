@@ -32,22 +32,28 @@ The `auro-dropdown` element should be used in situations where users may:
 <h3>The &lt;auro-dropdown&gt; is the only thing in the orange container.</h3>
 </div>
 <div id="auroDropdownSection">
-  
-  <auro-dropdown tabindex="0" id="auro-dropdown" for="inputField" sticky>
-  <input tabindex="0" type="text" id="inputField" slot="trigger"/>
-  <ul id="ul">
-  <li><a href="#" id="li-option1" tabindex="0">Option #1</a></li>
-  <li><a href="#" id="li-option2" tabindex="0">Option #2</a></li>
-  <li><a href="#" id="li-option3" tabindex="0">Option #3</a></li>
-  </ul>
+
+  <auro-dropdown id="auro-dropdown1" for="inputField" sticky>
+    <auro-input slot="trigger" tabindex="0" id="auro-input1" label="the label text" helptext="the help text" value="the value" disabled></auro-input>
+    <ul slot="tooltip" id="ul">
+      <li value="the value for option 1">Option #1</li>
+      <li value="the value for option 2">Option #2</li>
+      <li value="the value for option 3">Option #3</li>
+    </ul>
+<!--     <ul slot="tooltip" id="ul">
+      <li tabindex="0">Option #1</li>
+      <li tabindex="0">Option #2</li>
+      <li tabindex="0">Option #3</li>
+    </ul> -->
   </auro-dropdown>  
+
 </div>
 
 <div id="belowElements" class="otherTabbableElements">
 <h3>3 tabbable elements, below auro-dropdown</h3>
 <textarea tabindex="0" id="elBelow1of3">A textarea. Focus states work by default.</textarea>
 <button tabindex="0" id="elBelow2of3">And I'm a button. Again, works by default.</button>
-<div tabindex="0"contenteditable id="elBelow2of3">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
+<div tabindex="0"contenteditable id="elBelow3of3">Divs don't usually have a focus state. But I'm special, because I'm <code>contenteditable</code>.</div>
 <!-- <textarea tabindex="-1">I can't be tabbed to. This is a terrible idea, generally, but it can be done using tabindex="-1". Notice that (if you click) I still have a focus state, even though you can't tab to me.</textarea> -->
 </div>
 
