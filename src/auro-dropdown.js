@@ -86,50 +86,21 @@ class AuroDropdown extends LitElement {
     this.popover = this.shadowRoot.querySelector('#popover');
     this.popper = new Popover(this.trigger, this.popover, this.placement);
 
-    // const handleShow = () => {
-    //   this.toggleShow();
-    // },
-    //   handleHide = () => {
-    //     this.toggleHide();
-    //   },
-    // handleTabWhenFocusOnTrigger = (event) => {
-    //   console.log("path C");
-    //   if (event.key.toLowerCase() === 'tab') {
-    //     console.log("path D");
-    //     // this.toggleHide();
-    //     // instead of hiding the options list, put focus on first element
-    //     // debugger;
-    //     // for some reason the first <li> does not get focused on
-    //     // I don't know why right now, even when I did the .focus() myself
-    //     // I'm going to try see if I can get the tab to focus on anything else in popover
-    //     // this.popover.querySelector('slot').assignedNodes()[1].querySelectorAll('li')[0].focus();
-    //   }
-    // },
-
     const wtf = (evt, theLis, i) => {
       if (evt.key.toLowerCase() === 'enter' || evt.key.toLowerCase() === 'space ') {
-        // debugger;
-        alert(theLis[i].getAttribute('value'));
+        console.log(theLis[i].getAttribute('value'));
         this.shadowRoot.querySelector('auro-input').setAttribute('value', theLis[i].getAttribute('value'))
       }
     }
 
     const handleThisKeyPress = (event) => {
-      // alert("handleThisKeyPress()");
       if (event.key.toLowerCase() === 'enter' || event.key.toLowerCase() === 'space ') {
-        // console.log("path D");
-        // this.toggleHide();
-        // instead of hiding the options list, put focus on first element
-        // debugger;
-        // for some reason the first <li> does not get focused on
-        // I don't know why right now, even when I did the .focus() myself
-        // I'm going to try see if I can get the tab to focus on anything else in popover
+
         console.log('%c this.isPopoverVisible ' + this.isPopoverVisible, 'background-color: blue; color: yellow;');
         if (this.isPopoverVisible) {
           this.toggleHide();
           let theLis = this.shadowRoot.querySelector('[name="tooltip"]').assignedNodes()[0].querySelectorAll('li');
           for (let i = 0; i < theLis.length; i++) {
-            // debugger;
 
             theLis[i].removeAttribute('tabindex');
             theLis[i].removeEventListener('keypress', wtf)
@@ -140,7 +111,6 @@ class AuroDropdown extends LitElement {
           this.toggleShow();
           let theLis = this.shadowRoot.querySelector('[name="tooltip"]').assignedNodes()[0].querySelectorAll('li');
           for (let i = 0; i < theLis.length; i++) {
-            // debugger;
 
             theLis[i].setAttribute('tabindex', '0')
 
@@ -149,97 +119,12 @@ class AuroDropdown extends LitElement {
               theLis[i].setAttribute("brent", "true")
               }
           }
-          // debugger;
           this.isPopoverVisible = true;
         }
-        // this.popover.querySelector('slot').assignedNodes()[1].querySelectorAll('li')[0].focus();
       }
     };
-    // handleThisKeyDown = (event) => {
-    //   alert("handleThisKeyDown()");
-    //   if (event.key.toLowerCase() === 'enter' || event.key.toLowerCase() === 'space ') {
-    //     // console.log("path D");
-    //     // this.toggleHide();
-    //     // instead of hiding the options list, put focus on first element
-    //     // debugger;
-    //     // for some reason the first <li> does not get focused on
-    //     // I don't know why right now, even when I did the .focus() myself
-    //     // I'm going to try see if I can get the tab to focus on anything else in popover
-    //     this.toggleShow();
-    //     this.popover.querySelector('slot').assignedNodes()[1].querySelectorAll('li')[0].focus();
-    //   }
-    // },
-    // handleThisKeyUp = (event) => {
-    //   alert("handleThisKeyUp()");
-    //   if (event.key.toLowerCase() === 'enter' || event.key.toLowerCase() === 'space ') {
-    //     // console.log("path D");
-    //     // this.toggleHide();
-    //     // instead of hiding the options list, put focus on first element
-    //     // debugger;
-    //     // for some reason the first <li> does not get focused on
-    //     // I don't know why right now, even when I did the .focus() myself
-    //     // I'm going to try see if I can get the tab to focus on anything else in popover
-    //     this.toggleShow();
-    //     this.popover.querySelector('slot').assignedNodes()[1].querySelectorAll('li')[0].focus();
-    //   }
-    // },
-    // handleThisFocus = (event) => {
-    //   alert("handleThisFocus()");
-    //   if (event.key.toLowerCase() === 'enter' || event.key.toLowerCase() === 'space ') {
-    //     // console.log("path D");
-    //     // this.toggleHide();
-    //     // instead of hiding the options list, put focus on first element
-    //     // debugger;
-    //     // for some reason the first <li> does not get focused on
-    //     // I don't know why right now, even when I did the .focus() myself
-    //     // I'm going to try see if I can get the tab to focus on anything else in popover
-    //     this.toggleShow();
-    //     this.popover.querySelector('slot').assignedNodes()[1].querySelectorAll('li')[0].focus();
-    //   }
-    // },
-    // handleTabFocusesOnTrigger = (event) => {
-    //   console.log("path A");
-    //   if (event.key.toLowerCase() === 'tab') {
-    //     console.log("path B")
-    //     this.toggleShow();
-    //   }
-    // };
-
-    /*     if (!this.sticky) {
-          this.trigger.addEventListener('touchstart', handleShow);
-        }
-    
-        if (this.sticky) {
-          this.trigger.addEventListener('click', handleShow);
-        } else {
-          this.trigger.addEventListener('mouseenter', handleShow);
-          this.trigger.addEventListener('mouseleave', handleHide);
-        }
-    
-        // if user tabs off of trigger, then hide the popover.
-        this.trigger.addEventListener('keydown', handleTabWhenFocusOnTrigger);
-        this.trigger.addEventListener('keyup', handleTabFocusesOnTrigger); */
 
     this.addEventListener('keypress', handleThisKeyPress);
-    // this.addEventListener('keydown', handleThisKeyDown);
-    // this.addEventListener('keyup', handleThisKeyUp);
-    // this.addEventListener('focus', handleThisFocus);
-
-    // const handleA = () => {
-    //   console.log("handleA");
-    // }
-
-
-    // e.g. for a closePopover button in the popover
-    // const allLis = this.shadowRoot.querySelectorAll('li');
-    // allLis.map((li) => {
-    //   li.addEventListener('hover', handleA);
-    // });
-
-
-    // const debug = this.shadowRoot.querySelector(`#debug`);
-    // console.log("debug", debug);
-    // debug.addEventListener('click', () => { alert() } );
 
   }
 
@@ -279,8 +164,6 @@ class AuroDropdown extends LitElement {
   render() {
     console.log("render()");
     return html`
-      <!-- <auro-input tabindex="0" id="auro-input1" label="the label text" helptext="the help text" value="the value"         >
-                        </auro-input> -->
       
       <auro-input slot="trigger" tabindex="0" id="auro-input1" label="the label text" helptext="the help text"
         value="the value" disabled></auro-input>
