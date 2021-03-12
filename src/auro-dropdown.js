@@ -135,7 +135,7 @@ class AuroDropdown extends LitElement {
     };
 
     this.addEventListener('keypress', handleThisKeyPress);
-    this.addEventListener('focus', () => {debugger; this.shadowRoot.querySelector('auro-input').setAttribute('class', 'manualFocus') }  );
+    this.addEventListener('focus', () => { this.shadowRoot.querySelector('auro-input').setAttribute('class', 'manualFocus') }  );
 
   }
 
