@@ -44,6 +44,9 @@ The `auro-dropdown` element should be used in situations where users may:
       <li value="the value for option 1">Option #1</li>
       <li value="the value for option 2">Option #2</li>
       <li value="the value for option 3">Option #3</li>
+      <li value="a value representing Honolulu">Honolulu</li>
+      <li value="a value representing Mexico">Mexico</li>
+      <li value="a value representing Kazakhstan">Kazakhstan</li>
       <li value="❤️">❤️</li>
       <li value="🔥">🔥</li>
       <li value="👍">👍</li>

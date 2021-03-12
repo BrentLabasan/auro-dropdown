@@ -182,8 +182,8 @@ th, td {
 
 
 :focus {
-  background: pink;
-  border: 2px dotted blue;
+  background: yellow;
+  border: 2px dashed blue;
 }
 
 div {
@@ -203,4 +203,15 @@ button {
 #wtf {
   border: 3px solid yellow;
   margin: 20px;
+}
+
+:focus {
+  background: orange;
+  border: 2px dashed black;
+}
+
+.manualFocus {
+  background: grey;
+  border: 2px dashed purple;
+
 }

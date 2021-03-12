@@ -87,14 +87,20 @@ class AuroDropdown extends LitElement {
     this.popper = new Popover(this.trigger, this.popover, this.placement);
 
     const wtf = (evt, theLis, i) => {
-      if (evt.key.toLowerCase() === 'enter' || evt.key.toLowerCase() === 'space ') {
+      if (evt.key.toLowerCase() === 'enter' || evt.key.toLowerCase() === 'space') {
         console.log(theLis[i].getAttribute('value'));
         this.shadowRoot.querySelector('auro-input').setAttribute('value', theLis[i].getAttribute('value'))
       }
+      if (evt.key.toLowerCase() === 'escape') {
+        this.toggleHide();
+      }
+      
+
     }
 
     const handleThisKeyPress = (event) => {
-      if (event.key.toLowerCase() === 'enter' || event.key.toLowerCase() === 'space ') {
+      console.log("handleThisKeyPress()", event.key.toLowerCase());
+      if (event.key.toLowerCase() === 'enter' || event.key.toLowerCase() === 'space') {
 
         console.log('%c this.isPopoverVisible ' + this.isPopoverVisible, 'background-color: blue; color: yellow;');
         if (this.isPopoverVisible) {
@@ -103,7 +109,7 @@ class AuroDropdown extends LitElement {
           for (let i = 0; i < theLis.length; i++) {
 
             theLis[i].removeAttribute('tabindex');
-            theLis[i].removeEventListener('keypress', wtf)
+            // theLis[i].removeEventListener('keypress', wtf)
 
           }
           this.isPopoverVisible = false;
@@ -122,9 +128,14 @@ class AuroDropdown extends LitElement {
           this.isPopoverVisible = true;
         }
       }
+      // if (event.key.toLowerCase() === 'escape') {
+      //   this.toggleHide();
+      // }
+
     };
 
     this.addEventListener('keypress', handleThisKeyPress);
+    this.addEventListener('focus', () => {debugger; this.shadowRoot.querySelector('auro-input').setAttribute('class', 'manualFocus') }  );
 
   }
 
