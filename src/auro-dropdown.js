@@ -144,7 +144,10 @@ class AuroDropdown extends LitElement {
 
             theLis[i].setAttribute('tabindex', '0')
 
-            theLis[i].addEventListener('keypress', () => wtf(event, theLis, i))
+            if (theLis[i].hasAttribute("brent") === false) {
+              theLis[i].addEventListener('keypress', () => wtf(event, theLis, i));
+              theLis[i].setAttribute("brent", "true")
+              }
           }
           // debugger;
           this.isPopoverVisible = true;
