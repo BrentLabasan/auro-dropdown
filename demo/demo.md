@@ -44,7 +44,9 @@ The `auro-dropdown` element should be used in situations where users may:
       <li value="the value for option 1">Option #1</li>
       <li value="the value for option 2">Option #2</li>
       <li value="the value for option 3">Option #3</li>
-      <li value="the value for option 4">Option #4</li>
+      <li value="❤️">❤️</li>
+      <li value="🔥">🔥</li>
+      <li value="👍">👍</li>
     </ul>
 <!--     <ul slot="tooltip" id="ul">
       <li tabindex="0">Option #1</li>
