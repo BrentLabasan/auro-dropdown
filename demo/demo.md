@@ -34,11 +34,11 @@ The `auro-dropdown` element should be used in situations where users may:
 <div id="auroDropdownSection">
 
   <auro-dropdown id="auro-dropdown1" for="inputField" sticky>
-    <auro-input slot="trigger" tabindex="0" id="auro-input1" label="the label text" helptext="the help text" value="the value" disabled></auro-input>
     <ul slot="tooltip" id="ul">
       <li value="the value for option 1">Option #1</li>
       <li value="the value for option 2">Option #2</li>
       <li value="the value for option 3">Option #3</li>
+      <li value="the value for option 4">Option #4</li>
     </ul>
 <!--     <ul slot="tooltip" id="ul">
       <li tabindex="0">Option #1</li>
