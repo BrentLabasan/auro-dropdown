@@ -33,7 +33,7 @@ class AuroDropdown extends LitElement {
 
     this.privateDefaults();
 
-    this.placement = 'top';
+    this.placement = 'bottom-start';
 
     // adds toggle function to root element based on touch
     this.addEventListener('touchstart', function() {
@@ -164,7 +164,6 @@ class AuroDropdown extends LitElement {
   render() {
     return html`
       <div id="popover" class="popover util_insetLg" aria-live="polite">
-        <div id="arrow" class="arrow" data-popper-arrow></div>
         <slot role="tooltip"></slot>
       </div>
 
