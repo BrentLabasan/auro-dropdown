@@ -112,8 +112,8 @@ class AuroDropdown extends LitElement {
     },
     element = this.trigger.parentElement.nodeName === 'AURO-POPOVER' ? this : this.trigger;
 
-    element.addEventListener('mouseenter', handleShow);
-    element.addEventListener('mouseleave', handleHide);
+    // element.addEventListener('mouseenter', handleShow);
+    // element.addEventListener('mouseleave', handleHide);
 
     // if user tabs off of trigger, then hide the popover.
     this.trigger.addEventListener('keydown', handleKeyboardWhenFocusOnTrigger);
