@@ -88,21 +88,56 @@ class AuroDropdown extends LitElement {
     this.popover = this.shadowRoot.querySelector('#popover');
     this.popper = new Popover(this.trigger, this.popover, this.placement);
 
-    const handleShow = () => {
-      this.toggleShow();
+    const handleMousedown = (e) => {
+      console.log("handleMousedown")
+
+      // e.stopPropogation();
+      console.log("document.activeElement", document.activeElement);
+      console.log("this", this);
+      console.log(document.activeElement !== this);
+      if(document.activeElement !== this.trigger) {
+        return null;
+      } else {
+        this.toggleHide();
+      }
     },
-    handleHide = () => {
+    handleHide = (e) => {
+      console.log("handleHide")
+
       this.toggleHide();
     },
-    handleToggle = () => {
+    handleClick = (e) => {
+      console.log("handleClick")
+      console.log(e);
+      // e.preventDefault();
       this.toggle();
+    },
+    handleFocus = (e) => {
+      console.log("handleFocus")
+      console.log(e);
+      
+      // if the focus happened because of a click
+      if (e.eventPhase === 2 && document.activeElement === this) {
+        return null;
+      }
+
+      this.toggleShow();
+    },
+    handleBlur = (e) => {
+      console.log("handleBlur")
+
+      this.toggleHide();
+
     },
     handleKeyboardWhenFocusOnTrigger = (event) => {
       const key = event.key.toLowerCase();
 
       if (this.isPopoverVisible) {
-        if (key === 'tab' || key === 'escape') {
-          this.toggleHide();
+        if (key === 'tab') {
+          if (key === 'escape') {
+            this.toggleHide();
+          }
+          this.toggle();
         }
       }
 
@@ -112,18 +147,21 @@ class AuroDropdown extends LitElement {
     };
     // element = this.trigger.parentElement.nodeName === 'AURO-POPOVER' ? this : this.trigger;
 
-    this.trigger.addEventListener('click', handleToggle);
     // this.trigger.addEventListener('mouseleave', handleHide);
 
     // if user tabs off of trigger, then hide the popover.
     this.trigger.addEventListener('keydown', handleKeyboardWhenFocusOnTrigger);
+    this.trigger.addEventListener('click', handleClick);
+
 
     // handle gain/loss of focus
-    this.trigger.addEventListener('focus', handleShow);
-    this.trigger.addEventListener('blur', handleHide);
-
+    // this.trigger.addEventListener('focus', handleFocus);
+    // this.trigger.addEventListener('blur', handleBlur);
     // e.g. for a closePopover button in the popover
     this.addEventListener('hidePopover', handleHide);
+
+    // this.trigger.addEventListener('mousedown', handleMousedown);
+
   }
 
   /**
@@ -131,6 +169,8 @@ class AuroDropdown extends LitElement {
     * @returns {Void} Fires an update lifecycle.
   */
    toggle() {
+    console.log("toggle()")
+
     if (this.isPopoverVisible) {
       this.toggleHide();
     } else {
@@ -143,6 +183,8 @@ class AuroDropdown extends LitElement {
    * @returns {Void} Fires an update lifecycle.
    */
   toggleHide() {
+    console.log("toggleHide()")
+
     this.popper.hide();
     this.isPopoverVisible = false;
     this.removeAttribute('data-show');
@@ -153,6 +195,8 @@ class AuroDropdown extends LitElement {
    * @returns {Void} Fires an update lifecycle.
    */
   toggleShow() {
+    console.log("toggleShow()")
+
     this.popper.show();
     this.isPopoverVisible = true;
     this.setAttribute('data-show', true);

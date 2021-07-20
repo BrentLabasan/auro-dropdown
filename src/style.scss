@@ -19,10 +19,17 @@ $auro-inset-directions: '';
 // Support for auroElement styles
 // @import './node_modules/@alaskaairux/webcorestylesheets/dist/auroElement/auroElement';
 
-// container styles - defines the look of the outer custom component
-// :host {
-//   ...
-// }
+:host {
+  display: inline-block;
+  // padding: 20px;
+  
+  border: 2px dashed green;
+
+  // doesn't work
+  .focus-visible {
+    border: blue;
+  }
+}
 
 
 ::slotted(*) {
@@ -60,6 +67,12 @@ $auro-inset-directions: '';
   &:before {
     bottom: -20px;
   }
+}
+
+:host([data-show]) {
+  background-color: yellow;
+
+
 }
 
 :host(:not([data-show])) {
@@ -171,4 +184,20 @@ $auro-inset-directions: '';
     background: var(--auro-color-base-white);
     box-shadow: 2px 2px 1px 0 rgba(0, 0, 0, .08);
   }
+}
+
+[name="trigger"] demo-auro-datepicker-range-alphanumeric {
+  padding: 20px;
+  background-color: yellow;
+
+  border: 3px dotted red;
+
+}
+
+demo-auro-datepicker-range-alphanumeric {
+  padding: 20px;
+  background-color: yellow;
+
+  border: 3px dotted red;
+
 }

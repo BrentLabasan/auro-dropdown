@@ -1,6 +1,3 @@
-<demo-auro-datepicker-range-alphanumeric>a</demo-auro-datepicker-range-alphanumeric>
-<demo-auro-datepicker-range-calendar>b</demo-auro-datepicker-range-calendar>
-
 <auro-dropdown>
   <demo-auro-datepicker-range-alphanumeric slot="trigger">a</demo-auro-datepicker-range-alphanumeric>
   <demo-auro-datepicker-range-calendar slot="popover">b</demo-auro-datepicker-range-calendar>
