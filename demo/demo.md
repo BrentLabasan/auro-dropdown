@@ -1,5 +1,7 @@
 # auro-dropdown
 
+<auro-datepicker_alphanumeric></auro-datepicker_alphanumeric>
+
 <auro-datepicker_calendar cssClass="testClass">Hello World!</auro-datepicker_calendar>
 
 <div class="exampleWrapper">
