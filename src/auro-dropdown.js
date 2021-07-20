@@ -82,12 +82,9 @@ class AuroDropdown extends LitElement {
   }
 
   firstUpdated() {
-    this.trigger = document.querySelector(`#${this.for}`);
-    // allow placement in shadow roots
-    if (this.trigger === null) {
-      this.trigger = this.getRootNode().querySelector(`#${this.for}`);
-    }
-
+    // this.trigger = document.querySelector(`#${this.for}`); // old code
+    this.trigger = this.shadowRoot.querySelector("[name='trigger']").assignedNodes({flatten: true})[0]; // TODO
+    this.trigger.setAttribute('tabindex', 1);
     this.popover = this.shadowRoot.querySelector('#popover');
     this.popper = new Popover(this.trigger, this.popover, this.placement);
 
@@ -96,6 +93,9 @@ class AuroDropdown extends LitElement {
     },
     handleHide = () => {
       this.toggleHide();
+    },
+    handleToggle = () => {
+      this.toggle();
     },
     handleKeyboardWhenFocusOnTrigger = (event) => {
       const key = event.key.toLowerCase();
@@ -109,11 +109,11 @@ class AuroDropdown extends LitElement {
       if (key === ' ' || key === 'enter') {
         this.toggle();
       }
-    },
-    element = this.trigger.parentElement.nodeName === 'AURO-POPOVER' ? this : this.trigger;
+    };
+    // element = this.trigger.parentElement.nodeName === 'AURO-POPOVER' ? this : this.trigger;
 
-    // element.addEventListener('mouseenter', handleShow);
-    // element.addEventListener('mouseleave', handleHide);
+    this.trigger.addEventListener('click', handleToggle);
+    // this.trigger.addEventListener('mouseleave', handleHide);
 
     // if user tabs off of trigger, then hide the popover.
     this.trigger.addEventListener('keydown', handleKeyboardWhenFocusOnTrigger);
@@ -164,7 +164,7 @@ class AuroDropdown extends LitElement {
   render() {
     return html`
       <div id="popover" class="popover util_insetLg" aria-live="polite">
-        <slot role="tooltip"></slot>
+        <slot name="popover"></slot>
       </div>
 
       <slot name="trigger" data-trigger-placement="${this.placement}"></slot>

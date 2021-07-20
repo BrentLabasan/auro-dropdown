@@ -17,7 +17,7 @@ export class DemoAuroDatepickerRangeAlphanumeric extends LitElement {
   }
 
   render() {
-    return html`<p>Hello, ${this.name}!</p>`;
+    return html`<div>foo</div>`;
   }
 }
 
