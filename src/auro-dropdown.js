@@ -40,6 +40,8 @@ class AuroDropdown extends LitElement {
       this.toggle();
       this.setAttribute("isTouch", "true");
     });
+
+    this.addEventListener('toggleShow', this.toggleShow);
   }
 
   /**
@@ -151,16 +153,22 @@ class AuroDropdown extends LitElement {
 
     // if user tabs off of trigger, then hide the popover.
     this.trigger.addEventListener('keydown', handleKeyboardWhenFocusOnTrigger);
-    this.trigger.addEventListener('click', handleClick);
+    // this.trigger.addEventListener('click', handleClick);
 
+    this.addEventListener('toggleHide', this.toggleHide);
+    this.addEventListener('toggle', this.toggle);
 
     // handle gain/loss of focus
     // this.trigger.addEventListener('focus', handleFocus);
     // this.trigger.addEventListener('blur', handleBlur);
     // e.g. for a closePopover button in the popover
-    this.addEventListener('hidePopover', handleHide);
+    // this.addEventListener('hidePopover', handleHide);
 
     // this.trigger.addEventListener('mousedown', handleMousedown);
+
+    // NOTE: If a user clicks outside of auro-dropdown, the web app itself will detect that click
+    // and send the hide event to auro-dropdown
+    // this.addEventListener('blur', this.toggleHide())
 
   }
 
