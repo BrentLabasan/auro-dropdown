@@ -128,22 +128,23 @@ $auro-inset-directions: '';
 .popover {
   display: inline-block;
 
-  max-width: calc(100% - var(--auro-size-xl));
+  // dunno if I should've c/o or not
+  // max-width: calc(100% - var(--auro-size-xl));
 
   border-radius: var(--auro-border-radius);
   background: var(--auro-color-background-lightest);
   box-shadow: -2px 0 5px 2px rgba(0, 0, 0, .08),
     0 2px 5px 1px rgba(0, 0, 0, .08);
 
-  @include auro_breakpoint--sm {
-    max-width: 50%;
-  }
-  @include auro_breakpoint--md {
-    max-width: 40%;
-  }
-  @include auro_breakpoint--lg {
-    max-width: 27rem;
-  }
+  // @include auro_breakpoint--sm {
+  //   max-width: 50%;
+  // }
+  // @include auro_breakpoint--md {
+  //   max-width: 40%;
+  // }
+  // @include auro_breakpoint--lg {
+  //   max-width: 27rem;
+  // }
 }
 
 [data-popper-placement^='top'] > .arrow {
