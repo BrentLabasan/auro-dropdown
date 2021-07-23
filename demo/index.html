@@ -58,5 +58,46 @@
     <script src="https://unpkg.com/@alaskaairux/auro-icon@latest/dist/auro-icon__bundled.js" type="module"></script>
     <script src="https://unpkg.com/@alaskaairux/auro-hyperlink@latest/dist/auro-hyperlink__bundled.js" type="module"></script>
     <script src="https://unpkg.com/@alaskaairux/auro-alerts@latest/dist/auro-alerts__bundled.js" type="module"></script>
+
+    <script type="text/javascript">
+      document.addEventListener('click', function(e) {
+        console.log("document clicked");
+        console.log(e);
+        
+        // both don't work
+        // document.dispatchEvent(new CustomEvent('closeAuroDropdownPopover', 
+        //   {
+        //     bubbles: true,
+        //     composed: true,
+        //   }
+        // ));
+
+        // document.querySelector('body').dispatchEvent(new CustomEvent('closeAuroDropdownPopover', 
+        //   {
+        //     composed: true,
+        //   }
+        // ));
+
+        let clickedOnDropdown = false
+
+        e.path.map(function(el) {
+          console.log(el.nodeName)
+
+          if (el.nodeName && el.nodeName.toLowerCase() === 'auro-dropdown') {
+            clickedOnDropdown = true;
+          }
+        })
+
+        if (!clickedOnDropdown) {
+          document.querySelectorAll('auro-dropdown').forEach(function(el) {
+            el.dispatchEvent(new CustomEvent('closeAuroDropdownPopover'))
+          })
+        }
+
+
+      });
+
+
+    </script>
   </body>
 </html>

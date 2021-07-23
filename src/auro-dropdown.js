@@ -158,6 +158,13 @@ class AuroDropdown extends LitElement {
     this.addEventListener('toggleHide', this.toggleHide);
     this.addEventListener('toggle', this.toggle);
 
+    // this.addEventListener('closeAuroDropdownPopover', function() { alert() }, {
+    //   capture : true
+    // });
+    // this.addEventListener('closeAuroDropdownPopover', this.toggleHide, {capture: true});
+    this.addEventListener('closeAuroDropdownPopover', this.toggleHide);
+
+
     // handle gain/loss of focus
     // this.trigger.addEventListener('focus', handleFocus);
     // this.trigger.addEventListener('blur', handleBlur);
