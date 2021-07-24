@@ -221,6 +221,9 @@ class AuroDropdown extends LitElement {
 
   // function that renders the HTML and CSS into  the scope of the component
   render() {
+
+    console.log("auro.dropdown.js render()");
+
     return html`
       <div id="popover" class="popover util_insetLg" aria-live="polite">
         <slot name="popover"></slot>

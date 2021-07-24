@@ -61,8 +61,8 @@
 
     <script type="text/javascript">
       document.addEventListener('click', function(e) {
-        console.log("document clicked");
-        console.log(e);
+        // console.log("document clicked");
+        // console.log(e);
         
         // both don't work
         // document.dispatchEvent(new CustomEvent('closeAuroDropdownPopover', 
@@ -81,7 +81,7 @@
         let clickedOnDropdown = false
 
         e.path.map(function(el) {
-          console.log(el.nodeName)
+          // console.log(el.nodeName)
 
           if (el.nodeName && el.nodeName.toLowerCase() === 'auro-dropdown') {
             clickedOnDropdown = true;
