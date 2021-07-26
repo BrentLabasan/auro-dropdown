@@ -55,6 +55,18 @@ class AuroDropdown extends LitElement {
 
       this.setAttribute(property, evt.detail[property]);
     }
+
+    // debugger;
+
+    for (let i = 0; i < this.children.length; i++) {
+      // console.log(this.children[i]);
+
+      for (const property in evt.detail) {
+        // console.log(`${property}: ${evt.detail[property]}`);
+  
+        this.children[i].setAttribute(property, evt.detail[property]);
+      }
+    }
   }
 
   /**
