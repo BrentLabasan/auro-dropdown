@@ -42,6 +42,19 @@ class AuroDropdown extends LitElement {
     });
 
     this.addEventListener('toggleShow', this.toggleShow);
+    this.addEventListener('changeAttributeGlobally', this.handleChangeAttributeGlobally);
+  }
+
+  handleChangeAttributeGlobally(evt) {
+    // alert("auro-dropdown.js handleChangeAttributeGlobally()");
+
+    console.log("evt", evt);
+
+    for (const property in evt.detail) {
+      // console.log(`${property}: ${evt.detail[property]}`);
+
+      this.setAttribute(property, evt.detail[property]);
+    }
   }
 
   /**
