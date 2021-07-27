@@ -150,8 +150,6 @@ export default class AuroDatePickerCalendar extends LitElement {
 
       // this is currently for double mode
       if (this.isSelectionDepartDate) {
-        this.selectedDepartureDateTime = data.detail.dateTime;
-
         const pendingRangeStart = DateTime.fromObject(genLuxonObj(data.detail.year, data.detail.month, data.detail.day));
         const currentRangeEnd = DateTime.fromObject(genLuxonObj(this.returnDate_year, this.returnDate_month, this.returnDate_day));
         

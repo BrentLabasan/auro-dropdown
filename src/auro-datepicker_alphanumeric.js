@@ -98,12 +98,69 @@ class AuroDatepicker_alphanumeric extends LitElement {
     }));
   }
 
+  comesBefore(a, b) {
+    return DateTime.fromISO(a) < DateTime.fromISO(b);
+  }
+  
+  comesAfter(a, b) {
+    return DateTime.fromISO(a) > DateTime.fromISO(b);
+  }
+
   handleKeyPressDepart(evt) {
     const key = evt.key.toLowerCase();
 
     switch(key) {
       case 'enter':
-        alert("handleKeyPressDepart() key: Enter");
+        console.log("handleKeyPressDepart() key: Enter");
+        // debugger;
+
+        // debugger;
+
+        const inputDepartValue = this.shadowRoot.querySelector('#inputDepart').value;
+        const inputDepartValue_array = inputDepartValue.split('/');
+        // console.log("DateTime.fromObject({month: array[0], day: array[1], year: array[2]})", DateTime.fromObject({month: inputDepartValue_array[0], day: inputDepartValue_array[1], year: inputDepartValue_array[2]}));
+
+        if (this.isInputtedDateValid(inputDepartValue_array)) {
+
+
+          const pendingRangeStart = DateTime.fromObject({month: inputDepartValue_array[0], day: inputDepartValue_array[1], year: inputDepartValue_array[2]});
+          const inputReturnValue = this.shadowRoot.querySelector('#inputReturn').value;
+          const inputReturnValue_array = inputReturnValue.split('/');
+
+          const currentRangeEnd = DateTime.fromObject({month: inputReturnValue_array[0], day: inputReturnValue_array[1], year: inputReturnValue_array[2]});
+          
+          // debugger;
+          
+
+          if ( currentRangeEnd && this.comesAfter(pendingRangeStart, currentRangeEnd) ) { // pending departure date selection comes after the current arival date
+            alert("pending start date CAN NOT be after current end date");
+  
+            return;
+          }
+  
+          // debugger;
+          alert("incoming depart date is valid!");
+          // BOOKMARK 1
+          this.departDate_year = data.detail.year;
+          this.departDate_month = data.detail.month;
+          this.departDate_day = data.detail.day;
+  
+          this.dispatchEvent(new CustomEvent('changeAttributeGlobally', {
+            bubbles: true,
+            cancelable: false,
+            composed: true,
+            detail: 
+            {
+              departDate_year: data.detail.year,
+              departDate_month: data.detail.month,
+              departDate_day: data.detail.day,
+            }
+          }));
+
+        } else {
+          alert("depart date IS NOT valid");
+
+        }
 
         break;
     }
@@ -114,10 +171,69 @@ class AuroDatepicker_alphanumeric extends LitElement {
 
     switch(key) {
       case 'enter':
-        alert("handleKeyPressReturn() key: Enter");
+        console.log("handleKeyPressReturn() key: Enter");
+
+        // debugger;
+        // BOOKMARK2 reverse this to be relevant to Return, because I was doing Depart in Return
+        const inputDepartValue = this.shadowRoot.querySelector('#inputDepart').value;
+        const inputDepartValue_array = inputDepartValue.split('/');
+        // console.log("DateTime.fromObject({month: array[0], day: array[1], year: array[2]})", DateTime.fromObject({month: inputDepartValue_array[0], day: inputDepartValue_array[1], year: inputDepartValue_array[2]}));
+
+        if (this.isInputtedDateValid(inputDepartValue_array)) {
+
+
+          const pendingRangeStart = DateTime.fromObject({month: inputDepartValue_array[0], day: inputDepartValue_array[1], year: inputDepartValue_array[2]});
+          const inputReturnValue = this.shadowRoot.querySelector('#inputReturn').value;
+          const inputReturnValue_array = inputReturnValue.split('/');
+
+          const currentRangeEnd = DateTime.fromObject({month: inputReturnValue_array[0], day: inputReturnValue_array[1], year: inputReturnValue_array[2]});
+          
+          // debugger;
+          
+
+          if ( currentRangeEnd && comesAfter(pendingRangeStart, currentRangeEnd) ) { // pending departure date selection comes after the current arival date
+            alert("pending start date CAN NOT be after current end date");
+  
+            return;
+          }
+  
+          // debugger;
+
+          alert("incoming depart date is valid!");
+          this.departDate_year = data.detail.year;
+          this.departDate_month = data.detail.month;
+          this.departDate_day = data.detail.day;
+  
+          this.dispatchEvent(new CustomEvent('changeAttributeGlobally', {
+            bubbles: true,
+            cancelable: false,
+            composed: true,
+            detail: 
+            {
+              departDate_year: data.detail.year,
+              departDate_month: data.detail.month,
+              departDate_day: data.detail.day,
+            }
+          }));
+
+        } else {
+                    alert("depart date IS NOT valid");
+
+        }
 
         break;
     }
+  }
+
+  isInputtedDateValid(array) {
+    
+    const dt = DateTime.now();
+
+    if (array[2].length > 4 || parseInt(array[2]) < dt.year) {
+      return false;
+    }
+    
+    return DateTime.fromObject({month: array[0], day: array[1], year: array[2]}).isValid;
   }
 
   // When using auroElement, use the following attribute and function when hiding content from screen readers.
@@ -131,8 +247,8 @@ class AuroDatepicker_alphanumeric extends LitElement {
 
     return html`
       <div>
-        <input type="text" @click="${this.handleClick}" @keydown="${this.handleKeyPressDepart}" value="${ DateTime.fromObject({ year: this.departDate_year, month: this.departDate_month, day: this.departDate_day }).toFormat('LL/dd/yyyy')  }"/>
-        <input type="text" @click="${this.handleClick}" @keydown="${this.handleKeyPressReturn}" value="${ DateTime.fromObject({ year: this.returnDate_year, month: this.returnDate_month, day: this.returnDate_day }).toFormat('LL/dd/yyyy')  }"/>
+        <input id="inputDepart" type="text" @click="${this.handleClick}" @keydown="${this.handleKeyPressDepart}" value="${ DateTime.fromObject({ year: this.departDate_year, month: this.departDate_month, day: this.departDate_day }).toFormat('LL/dd/yyyy')  }"/>
+        <input id="inputReturn" type="text" @click="${this.handleClick}" @keydown="${this.handleKeyPressReturn}" value="${ DateTime.fromObject({ year: this.returnDate_year, month: this.returnDate_month, day: this.returnDate_day }).toFormat('LL/dd/yyyy')  }"/>
       </div>
     `;
   }
