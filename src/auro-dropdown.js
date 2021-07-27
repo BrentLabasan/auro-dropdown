@@ -164,7 +164,7 @@ class AuroDropdown extends LitElement {
     handleKeyboardWhenFocusOnTrigger = (event) => {
       const key = event.key.toLowerCase();
 
-      switch(expression) {
+      switch(key) {
         case 'enter':
           if (this.pressEnterToToggle) {
             this.toggle();
