@@ -98,6 +98,14 @@ class AuroDatepicker_alphanumeric extends LitElement {
     }));
   }
 
+  handleKeyboardWhenFocusOnTrigger(evt) {
+    const key = evt.key.toLowerCase();
+
+    if (key === 'enter') {
+      this.toggle();
+    }
+  }
+
   // When using auroElement, use the following attribute and function when hiding content from screen readers.
   // aria-hidden="${this.hideAudible(this.hiddenAudible)}"
 
