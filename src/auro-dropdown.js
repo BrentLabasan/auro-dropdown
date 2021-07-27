@@ -88,7 +88,12 @@ class AuroDropdown extends LitElement {
       cssClass:   { type: String },
 
       placement:  { type: String },
-      for:        { type: String }
+      for:        { type: String },
+
+      pressEnterToToggle:        { type: Boolean },
+      pressSpaceToToggle:        { type: Boolean },
+
+
     };
   }
 
@@ -159,18 +164,33 @@ class AuroDropdown extends LitElement {
     handleKeyboardWhenFocusOnTrigger = (event) => {
       const key = event.key.toLowerCase();
 
-      if (this.isPopoverVisible) {
-        if (key === 'tab') {
-          if (key === 'escape') {
-            this.toggleHide();
+      switch(expression) {
+        case 'enter':
+          if (this.pressEnterToToggle) {
+            this.toggle();
           }
-          this.toggle();
-        }
-      }
 
-      if (key === ' ' || key === 'enter') {
-        this.toggle();
-      }
+          break;
+        case 'space':
+          if (this.pressSpaceToToggle) {
+            this.toggle();
+          }          
+          
+          break;
+        case 'tab':
+          // code block
+
+          break;
+        case 'backtab': // TODO
+
+          break;
+        case 'escape':
+          this.toggleHide();
+
+          break;
+        default:
+          // code block
+      } 
     };
     // element = this.trigger.parentElement.nodeName === 'AURO-POPOVER' ? this : this.trigger;
 
