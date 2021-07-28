@@ -188,8 +188,6 @@ export default class AuroDatePickerCalendar extends LitElement {
         // this.displayMonth = DateTime.fromISO(data.detail.dateTime).plus({months: 1}).month;
         // this.displayYear = DateTime.fromISO(data.detail.dateTime).year;
       } else {
-        this.selectedArrivalDateTime = data.detail.dateTime;
-
         const pendingRangeEnd = DateTime.fromObject(genLuxonObj(data.detail.year, data.detail.month, data.detail.day));
         const currentRangeStart = DateTime.fromObject(genLuxonObj(this.departDate_year, this.departDate_month, this.departDate_day));
 
