@@ -14,7 +14,7 @@ import { DateTime } from 'luxon';
 
 // Import touch detection lib
 import "focus-visible/dist/focus-visible.min.js";
-import styleCss from "./style-css.js";
+import styleCss from "./auro-datepicker_alphanumeric-css.js";
 import styleCssFixed from './style-fixed-css.js';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
