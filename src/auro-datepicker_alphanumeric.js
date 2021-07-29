@@ -14,7 +14,7 @@ import { DateTime } from 'luxon';
 
 // Import touch detection lib
 import "focus-visible/dist/focus-visible.min.js";
-import styleCss from "./auro-datepicker_alphanumeric-css.js";
+import styleCss from './auro-datepicker_alphanumeric-css.js';
 import styleCssFixed from './style-fixed-css.js';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
@@ -95,6 +95,7 @@ class AuroDatepicker_alphanumeric extends LitElement {
 
     // debugger;
 
+    // TODO make this not hardcoded?
     this.parentElement.querySelector('auro-datepicker_calendar').setAttribute('isSelectionDepartDate', '');
 
     this.dispatchEvent(new CustomEvent('toggleShow', {
@@ -125,6 +126,10 @@ class AuroDatepicker_alphanumeric extends LitElement {
     return DateTime.fromISO(a) > DateTime.fromISO(b);
   }
 
+  fromShortMonthToNumber(str) {
+    return new Date(`${str} 01 2000`).toLocaleDateString(`en`, {month:`2-digit`})
+  }
+
   handleKeyPressDepart(evt) {
     const key = evt.key.toLowerCase();
 
@@ -138,32 +143,43 @@ class AuroDatepicker_alphanumeric extends LitElement {
         const inputDepartValue = this.shadowRoot.querySelector('#inputDepart').value;
         const inputDepartValue_array = inputDepartValue.split('/');
         // console.log("DateTime.fromObject({month: array[0], day: array[1], year: array[2]})", DateTime.fromObject({month: inputDepartValue_array[0], day: inputDepartValue_array[1], year: inputDepartValue_array[2]}));
+        
+        // debugger;
 
         if (this.isInputtedDateValid(inputDepartValue_array)) {
 
 
           const pendingRangeStart = DateTime.fromObject({month: inputDepartValue_array[0], day: inputDepartValue_array[1], year: inputDepartValue_array[2]});
           const inputReturnValue = this.shadowRoot.querySelector('#inputReturn').value;
-          const inputReturnValue_array = inputReturnValue.split('/');
 
-          const currentRangeEnd = DateTime.fromObject({month: inputReturnValue_array[0], day: inputReturnValue_array[1], year: inputReturnValue_array[2]});
+          const inputReturnValue_array = inputReturnValue.split(',');
+          const processedArray = [];
+          processedArray[0] = this.fromShortMonthToNumber( inputReturnValue_array[1].trim().split(' ')[0] );
+          processedArray[1] = inputReturnValue_array[1].trim().split(' ')[1] ;
+          processedArray[2] = inputReturnValue_array[2];
+
+          const currentRangeEnd = DateTime.fromObject({month: processedArray[0], day: processedArray[1], year: processedArray[2]});
           
           // debugger;
           
 
           if ( currentRangeEnd && this.comesAfter(pendingRangeStart, currentRangeEnd) ) { // pending departure date selection comes after the current arival date
-            alert("pending start date CAN NOT be after current end date");
+            console.error("pending start date CAN NOT be after current end date");
   
             return;
           }
   
           // debugger;
-          alert("incoming depart date is valid!");
+          console.log("incoming depart date is valid!");
+
+          // DIDN'T WORK thinking was if I unfocus off of left input, maybe the text in field will match the attribute
+          // document.querySelector('body').focus();
 
           this.departDate_month = inputDepartValue_array[0];
           this.departDate_day = inputDepartValue_array[1];
           this.departDate_year = inputDepartValue_array[2];
 
+          // this.value = "blah"; // doesn't work
   
           this.dispatchEvent(new CustomEvent('changeAttributeGlobally', {
             bubbles: true,
@@ -178,7 +194,7 @@ class AuroDatepicker_alphanumeric extends LitElement {
           }));
 
         } else {
-          alert("depart date IS NOT valid");
+          console.error("depart date IS NOT valid");
 
         }
 
@@ -206,21 +222,26 @@ class AuroDatepicker_alphanumeric extends LitElement {
 
           const pendingRangeEnd = DateTime.fromObject({month: inputReturnValue_array[0], day: inputReturnValue_array[1], year: inputReturnValue_array[2]});
           const inputDepartValue = this.shadowRoot.querySelector('#inputDepart').value;
-          const inputDepartValue_array = inputDepartValue.split('/');
 
-          const currentRangeBegin = DateTime.fromObject({month: inputDepartValue_array[0], day: inputDepartValue_array[1], year: inputDepartValue_array[2]});
+          const inputDepartValue_array = inputDepartValue.split(',');
+          const processedArray = [];
+          processedArray[0] = this.fromShortMonthToNumber( inputDepartValue_array[1].trim().split(' ')[0] );
+          processedArray[1] = inputDepartValue_array[1].trim().split(' ')[1] ;
+          processedArray[2] = inputDepartValue_array[2];
+
+          const currentRangeBegin = DateTime.fromObject({month: processedArray[0], day: processedArray[1], year: processedArray[2]});
           
           // debugger;
           
 
           if ( currentRangeBegin && this.comesBefore(pendingRangeEnd, currentRangeBegin) ) { // pending departure date selection comes after the current arival date
-            alert("pending end date CAN NOT be before current begin date");
+            console.error("pending end date CAN NOT be before current begin date");
   
             return;
           }
   
           // debugger;
-          alert("incoming return date is valid!"); // bookmark
+          console.log("incoming return date is valid!"); // bookmark
 
           this.returnDate_month = inputReturnValue_array[0];
           this.returnDate_day = inputReturnValue_array[1];
@@ -240,7 +261,7 @@ class AuroDatepicker_alphanumeric extends LitElement {
           }));
 
         } else {
-          alert("return date IS NOT valid");
+          console.error("return date IS NOT valid");
 
         }
 
@@ -268,10 +289,17 @@ class AuroDatepicker_alphanumeric extends LitElement {
 
     // DateTime.fromObject({ year: null, month: null, day: null }) will return the DateTime right now
 
+    const dateFormat = 'ccc, LLL dd, yyyy';
+debugger;
     return html`
       <div>
-        <input id="inputDepart" type="text" @click="${this.handleClickDepart}" @keydown="${this.handleKeyPressDepart}" value="${ DateTime.fromObject({ year: this.departDate_year, month: this.departDate_month, day: this.departDate_day }).toFormat('LL/dd/yyyy')  }"/>
-        <input id="inputReturn" type="text" @click="${this.handleClickReturn}" @keydown="${this.handleKeyPressReturn}" value="${ DateTime.fromObject({ year: this.returnDate_year, month: this.returnDate_month, day: this.returnDate_day }).toFormat('LL/dd/yyyy')  }"/>
+        <input id="inputDepart" type="text" @click="${this.handleClickDepart}" @keyup="${this.handleKeyPressDepart}" value="${ DateTime.fromObject({ year: this.departDate_year, month: this.departDate_month, day: this.departDate_day }).toFormat(dateFormat)  }"/>
+        
+        <svg width="1" height="32">
+          <line style="stroke: #DBDBDB; stroke-width:1" x1="0" y1="0" x2="0" y2="32"></line>
+        </svg>
+
+        <input id="inputReturn" type="text" @click="${this.handleClickReturn}" @keyup="${this.handleKeyPressReturn}" value="${ DateTime.fromObject({ year: this.returnDate_year, month: this.returnDate_month, day: this.returnDate_day }).toFormat(dateFormat)  }"/>
       </div>
     `;
   }
