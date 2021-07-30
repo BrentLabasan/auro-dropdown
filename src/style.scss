@@ -129,6 +129,8 @@ $auro-inset-directions: '';
 .popover {
   display: inline-block;
 
+  padding: 0px;
+
   // dunno if I should've c/o or not
   // max-width: calc(100% - var(--auro-size-xl));
 

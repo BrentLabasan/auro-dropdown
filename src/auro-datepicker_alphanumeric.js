@@ -17,6 +17,9 @@ import "focus-visible/dist/focus-visible.min.js";
 import styleCss from './auro-datepicker_alphanumeric-css.js';
 import styleCssFixed from './style-fixed-css.js';
 
+import calendar from '@alaskaairux/icons/dist/icons/interface/calendar_es6.js';
+
+
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
 * auro-datepicker_alphanumeric provides users a way to ... (it would be great if you fill this out)
@@ -27,9 +30,11 @@ import styleCssFixed from './style-fixed-css.js';
 
 // build the component class
 class AuroDatepicker_alphanumeric extends LitElement {
-  // constructor() {
-  //   super();
-  // }
+  constructor() {
+    super();
+
+    this.calendar = this.getIconAsHtml(calendar);
+  }
 
   // This function is to define props used within the scope of this component
   // Be sure to review  https://lit-element.polymer-project.org/guide/properties#reflected-attributes
@@ -41,9 +46,9 @@ class AuroDatepicker_alphanumeric extends LitElement {
       // this property is DEMO ONLY! Please delete.
       cssClass:   { type: String },
 
-      departDate_year: {type: Number},
-      departDate_month: {type: Number},
-      departDate_day: {type: Number},
+      departDate_year: {type: Number, reflect: true},
+      departDate_month: {type: Number, reflect: true},
+      departDate_day: {type: Number, reflect: true},
 
       returnDate_year: {type: Number},
       returnDate_month: {type: Number},
@@ -71,9 +76,18 @@ class AuroDatepicker_alphanumeric extends LitElement {
 
       const dt2 = DateTime.fromObject({year: this.departDate_year, month: this.departDate_month, day: this.departDate_day}).plus({month: 1});
 
-      this.returnDate_year = dt2.year;
-      this.returnDate_month = dt2.month;
-      this.returnDate_day = dt2.day;
+      // BOOKMARK determine if return dates have been set
+      if (this.parentElement.getAttribute('returnDate_year') && this.parentElement.getAttribute('returnDate_month') && this.parentElement.getAttribute('returnDate_day')) {
+        this.returnDate_year = this.parentElement.getAttribute('returnDate_year');
+        this.returnDate_month = this.parentElement.getAttribute('returnDate_month');
+        this.returnDate_day = this.parentElement.getAttribute('returnDate_day');
+      } else {
+        this.returnDate_year = dt2.year;
+        this.returnDate_month = dt2.month;
+        this.returnDate_day = dt2.day;
+      }
+
+
     } else {
 
       this.departDate_year = dt.year;
@@ -89,6 +103,17 @@ class AuroDatepicker_alphanumeric extends LitElement {
 
 
   }
+
+    /**
+   * @private Parse imported SVG object data to string for HTML use
+   * @param {string} icon HTML string for requested icon.
+   * @returns {object} Appended HTML for SVG.
+   */
+    getIconAsHtml(icon) {
+      const dom = new DOMParser().parseFromString(icon.svg, 'text/html');
+
+      return dom.body.firstChild;
+    }
 
   handleClickDepart() {
     console.log("datepicker_alphanumeric handleClickDepart()");
@@ -126,11 +151,14 @@ class AuroDatepicker_alphanumeric extends LitElement {
     return DateTime.fromISO(a) > DateTime.fromISO(b);
   }
 
+  // https://stackoverflow.com/a/66791326/708355
   fromShortMonthToNumber(str) {
     return new Date(`${str} 01 2000`).toLocaleDateString(`en`, {month:`2-digit`})
   }
 
   handleKeyPressDepart(evt) {
+    console.log("handleKeyPressDepart()");
+
     const key = evt.key.toLowerCase();
 
     switch(key) {
@@ -207,7 +235,6 @@ class AuroDatepicker_alphanumeric extends LitElement {
 
     switch(key) {
       case 'enter':
-      case 'enter':
         console.log("handleKeyPressDepart() key: Enter");
         // debugger;
 
@@ -272,7 +299,7 @@ class AuroDatepicker_alphanumeric extends LitElement {
   isInputtedDateValid(array) {
     
     const dt = DateTime.now();
-
+    console.log('array', array)
     if (array[2].length > 4 || parseInt(array[2]) < dt.year) {
       return false;
     }
@@ -290,17 +317,17 @@ class AuroDatepicker_alphanumeric extends LitElement {
     // DateTime.fromObject({ year: null, month: null, day: null }) will return the DateTime right now
 
     const dateFormat = 'ccc, LLL dd, yyyy';
-debugger;
+// debugger;
     return html`
-      <div>
-        <input id="inputDepart" type="text" @click="${this.handleClickDepart}" @keyup="${this.handleKeyPressDepart}" value="${ DateTime.fromObject({ year: this.departDate_year, month: this.departDate_month, day: this.departDate_day }).toFormat(dateFormat)  }"/>
+        ${this.calendar} 
+
+        <input id="inputDepart" type="text" @click="${this.handleClickDepart}" @keydown="${this.handleKeyPressDepart}" value="${ DateTime.fromObject({ year: this.departDate_year, month: this.departDate_month, day: this.departDate_day }).toFormat(dateFormat)  }"/>
         
-        <svg width="1" height="32">
+        <svg id="verticalLine" width="1" height="32">
           <line style="stroke: #DBDBDB; stroke-width:1" x1="0" y1="0" x2="0" y2="32"></line>
         </svg>
 
-        <input id="inputReturn" type="text" @click="${this.handleClickReturn}" @keyup="${this.handleKeyPressReturn}" value="${ DateTime.fromObject({ year: this.returnDate_year, month: this.returnDate_month, day: this.returnDate_day }).toFormat(dateFormat)  }"/>
-      </div>
+        <input id="inputReturn" type="text" @click="${this.handleClickReturn}" @keydown="${this.handleKeyPressReturn}" value="${ DateTime.fromObject({ year: this.returnDate_year, month: this.returnDate_month, day: this.returnDate_day }).toFormat(dateFormat)  }"/>
     `;
   }
 }
