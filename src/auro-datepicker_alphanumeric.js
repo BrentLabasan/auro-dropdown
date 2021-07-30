@@ -76,7 +76,6 @@ class AuroDatepicker_alphanumeric extends LitElement {
 
       const dt2 = DateTime.fromObject({year: this.departDate_year, month: this.departDate_month, day: this.departDate_day}).plus({month: 1});
 
-      // BOOKMARK determine if return dates have been set
       if (this.parentElement.getAttribute('returnDate_year') && this.parentElement.getAttribute('returnDate_month') && this.parentElement.getAttribute('returnDate_day')) {
         this.returnDate_year = this.parentElement.getAttribute('returnDate_year');
         this.returnDate_month = this.parentElement.getAttribute('returnDate_month');
